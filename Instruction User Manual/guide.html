@@ -1,0 +1,1772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#12304a">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="The complete bicycle guide: technical description, accessories, warranties, hazard alerts, FAQs, definitions and references.">
+  <link rel="icon" href="Images/Logo.png">
+  <link rel="apple-touch-icon" href="Images/Logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <title>Guide</title>
+
+ <style>
+    .road-progress {
+      display: none;
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      width: 56px;
+      z-index: 100;
+      pointer-events: none;
+    }
+
+    .road-track {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 10px;
+      width: 12px;
+      background: #c9d3dc;
+      box-shadow: -2px 0 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .road-track::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 2px;
+      transform: translateX(-50%);
+      background: repeating-linear-gradient(180deg, #fff 0 10px, transparent 10px 20px);
+    }
+
+    .road-fill {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 17px;
+      background-color: #7d5f42;
+      background-image:
+        radial-gradient(circle, #a0805a 1.5px, transparent 2px),
+        radial-gradient(circle, #5c4430 1.5px, transparent 2px);
+      background-size: 8px 8px, 11px 11px;
+      background-position: 0 0, 4px 5px;
+    }
+
+    .road-fill::after {
+      content: "";
+      position: absolute;
+      bottom: -2px;
+      left: -12px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: rgba(160, 128, 90, 0.55);
+      box-shadow:
+        -8px -12px 0 -3px rgba(184, 149, 114, 0.45),
+        -3px -24px 0 -4px rgba(139, 107, 74, 0.35);
+      filter: blur(2px);
+    }
+
+      .road-bike {
+      position: absolute;
+      top: 0;
+      right: 16px;
+      z-index: 2;
+      width: 34px;
+      height: 34px;
+      font-size: 28px;
+      line-height: 34px;
+      text-align: center;
+      transform: rotate(-90deg);
+      transition: transform 0.3s ease;
+    }
+
+    .road-progress.going-up .road-bike {
+      transform: rotate(-90deg) scaleX(-1);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .road-bike { transition: none; }
+    }
+
+    @keyframes road-fill {
+      from { height: 17px; }
+      to { height: calc(100% - 17px); }
+    }
+
+    @keyframes road-bike {
+      from { top: 0; }
+      to { top: calc(100% - 34px); }
+    }
+
+    @supports (animation-timeline: scroll()) {
+      .road-progress {
+        display: block;
+      }
+      .road-fill {
+        animation: road-fill 1ms linear both;
+        animation-timeline: scroll(root block);
+      }
+      .road-bike {
+        animation: road-bike 1ms linear both;
+        animation-timeline: scroll(root block);
+      }
+    }
+
+    body.guide-page > h1,
+body.guide-page > p {
+  position: relative;
+}
+
+body.guide-page > h1::before,
+body.guide-page > p::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 100vw;
+  margin-left: -50vw;
+  background-attachment: fixed;
+  background-repeat: repeat;
+}
+
+body.guide-page > h1::before {
+  top: -32px;
+}
+
+body.guide-page > h1:nth-of-type(1)::before,
+body.guide-page > p:nth-of-type(1)::before {
+  display: none;
+}
+
+body.guide-page > h1:nth-of-type(2)::before,
+body.guide-page > p:nth-of-type(2)::before {
+  background-color: #e8c27a;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 140'%3E%3Cg fill='%23467d45'%3E%3Crect x='44' y='30' width='12' height='100' rx='6'/%3E%3Crect x='28' y='70' width='22' height='9' rx='4'/%3E%3Crect x='28' y='52' width='9' height='27' rx='4'/%3E%3Crect x='50' y='56' width='22' height='9' rx='4'/%3E%3Crect x='63' y='40' width='9' height='25' rx='4'/%3E%3C/g%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 40'%3E%3Cpath d='M0 28 Q30 8 60 28 T120 28' fill='none' stroke='%23d4a257' stroke-width='3'/%3E%3C/svg%3E");
+  background-size: 130px 182px, 120px 40px;
+  background-position: 30px 20px, 0 0;
+}
+
+body.guide-page > h1:nth-of-type(3)::before,
+body.guide-page > p:nth-of-type(3)::before {
+  background-color: #bcd7ea;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 190'%3E%3Cg fill='%233b6a82'%3E%3Cpolygon points='50,4 78,50 22,50'/%3E%3Cpolygon points='50,28 86,84 14,84'/%3E%3Cpolygon points='50,56 94,120 6,120'/%3E%3Crect x='44' y='116' width='12' height='24'/%3E%3C/g%3E%3Cg fill='%23ffffff'%3E%3Cpolygon points='50,4 62,25 38,25'/%3E%3Cpolygon points='50,28 64,52 36,52'/%3E%3Cpolygon points='50,56 67,81 33,81'/%3E%3C/g%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 90 90'%3E%3Cg fill='%23ffffff' fill-opacity='.9'%3E%3Ccircle cx='10' cy='12' r='2.5'/%3E%3Ccircle cx='55' cy='30' r='2'/%3E%3Ccircle cx='30' cy='60' r='3'/%3E%3Ccircle cx='75' cy='75' r='2'/%3E%3Ccircle cx='80' cy='10' r='1.5'/%3E%3Ccircle cx='15' cy='80' r='1.5'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 120px 228px, 90px 90px;
+  background-position: 20px 10px, 0 0;
+}
+
+body.guide-page > h1:nth-of-type(4)::before,
+body.guide-page > p:nth-of-type(4)::before {
+  background-color: #8bc66a;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 120'%3E%3Crect width='160' height='120' fill='%238bc66a'/%3E%3Crect width='60' height='120' fill='%234b4f55'/%3E%3Crect x='58' width='2' height='120' fill='%23f2c744'/%3E%3Crect x='29' y='8' width='3' height='30' fill='%23ffffff'/%3E%3Crect x='29' y='68' width='3' height='30' fill='%23ffffff'/%3E%3Ccircle cx='108' cy='30' r='14' fill='%234f9a45'/%3E%3Ccircle cx='122' cy='24' r='10' fill='%23458c3d'/%3E%3Crect x='135' y='78' width='4' height='26' fill='%23ffffff'/%3E%3Crect x='135' y='78' width='4' height='7' fill='%23d9382b'/%3E%3C/svg%3E");
+  background-size: 160px 120px;
+  background-position: 0 0;
+}
+
+body.guide-page > h1:nth-of-type(5)::before,
+body.guide-page > p:nth-of-type(5)::before {
+  background-color: #4fb0d6;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cpolygon points='60,130 130,130 118,148 72,148' fill='%238b5a2b'/%3E%3Crect x='94' y='70' width='3' height='60' fill='%23654321'/%3E%3Cpolygon points='98,72 98,126 124,126' fill='%23ffffff'/%3E%3Cpolygon points='92,82 92,126 70,126' fill='%23f1f5f9'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 40'%3E%3Cpath d='M0 20 Q15 8 30 20 T60 20 T90 20 T120 20' fill='none' stroke='%23ffffff' stroke-opacity='.55' stroke-width='3'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 40'%3E%3Cpath d='M0 20 Q15 8 30 20 T60 20 T90 20 T120 20' fill='none' stroke='%23ffffff' stroke-opacity='.35' stroke-width='2'/%3E%3C/svg%3E");
+  background-size: 240px 240px, 120px 40px, 120px 40px;
+  background-position: 20px 10px, 0 0, 60px 20px;
+}
+
+body.guide-page > h1:nth-of-type(6)::before,
+body.guide-page > p:nth-of-type(6)::before {
+  background-color: #1f5a3f;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 190'%3E%3Crect x='46' y='70' width='8' height='60' fill='%235a3d26'/%3E%3Cg fill='%232d7a4f'%3E%3Ccircle cx='50' cy='45' r='30'/%3E%3Ccircle cx='30' cy='65' r='22'/%3E%3Ccircle cx='70' cy='65' r='22'/%3E%3C/g%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 190'%3E%3Crect x='46' y='70' width='8' height='60' fill='%234a3220'/%3E%3Cg fill='%23256b45'%3E%3Ccircle cx='50' cy='45' r='30'/%3E%3Ccircle cx='30' cy='65' r='22'/%3E%3Ccircle cx='70' cy='65' r='22'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 120px 228px, 100px 190px;
+  background-position: 0 0, 60px 110px;
+}
+
+body.guide-page > h1:nth-of-type(7)::before,
+body.guide-page > p:nth-of-type(7)::before {
+  background-color: #6b4a32;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 140 140'%3E%3Cellipse cx='30' cy='30' rx='14' ry='9' fill='%238d8d8d'/%3E%3Cellipse cx='95' cy='70' rx='10' ry='7' fill='%23a3a3a3'/%3E%3Cellipse cx='50' cy='110' rx='12' ry='8' fill='%237a7a7a'/%3E%3Cg fill='%234d3524'%3E%3Ccircle cx='70' cy='20' r='3'/%3E%3Ccircle cx='120' cy='30' r='2'/%3E%3Ccircle cx='15' cy='80' r='3'/%3E%3Ccircle cx='80' cy='120' r='2'/%3E%3C/g%3E%3Cpolygon points='115,105 123,115 115,125 107,115' fill='%234fc3f7'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 260 120'%3E%3Cpath d='M0 60 Q65 40 130 60 T260 60' fill='none' stroke='%235a3c27' stroke-width='4'/%3E%3C/svg%3E");
+  background-size: 140px 140px, 260px 120px;
+  background-position: 0 0, 0 0;
+}
+body.guide-page > h1:nth-of-type(1)::before,
+body.guide-page > p:nth-of-type(1)::before {
+  display: block;
+  background-color: #8cc3a6;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 140'%3E%3Cg fill='%232f6b50'%3E%3Cpolygon points='50,4 78,50 22,50'/%3E%3Cpolygon points='50,28 86,84 14,84'/%3E%3Cpolygon points='50,56 94,120 6,120'/%3E%3Crect x='44' y='116' width='12' height='24'/%3E%3C/g%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 140'%3E%3Cg fill='%233f7d62'%3E%3Cpolygon points='50,4 78,50 22,50'/%3E%3Cpolygon points='50,28 86,84 14,84'/%3E%3Cpolygon points='50,56 94,120 6,120'/%3E%3Crect x='44' y='116' width='12' height='24'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 110px 154px, 110px 154px;
+  background-position: 0 0, 55px 77px;
+}
+  
+  html {
+  scroll-behavior: smooth;
+}
+
+body.guide-page > h1 {
+  scroll-margin-top: 80px;
+}
+
+.section-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 90;
+  display: flex;
+  justify-content: safe center;
+  gap: 8px;
+  padding: 10px 76px 10px 16px;
+  background: rgba(18, 48, 74, 0.96);
+  overflow-x: auto;
+  white-space: nowrap;
+  transform: translateY(-100%);
+  visibility: hidden;
+  transition: transform 0.3s ease, visibility 0.3s ease;
+}
+
+.section-nav.visible {
+  transform: translateY(0);
+  visibility: visible;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+}
+
+.section-nav a {
+  padding: 8px 16px;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: 999px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.section-nav a:hover,
+.section-nav a:focus-visible {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.section-nav a.active {
+  background: #fff;
+  color: #12304a;
+  font-weight: 600;
+}
+
+.back-top {
+  display: block;
+  width: fit-content;
+  margin: 0;
+  padding: 8px 18px;
+  background: #12304a;
+  border: 2px solid #12304a;
+  border-radius: 999px;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.back-top:hover,
+.back-top:focus-visible {
+  background: #fff;
+  color: #12304a;
+}
+
+.back-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.road-progress {
+  pointer-events: auto;
+  touch-action: none;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.road-progress.dragging {
+  cursor: grabbing;
+}
+
+.road-track {
+  transition: width 0.2s ease;
+}
+
+.road-progress:hover .road-track,
+.road-progress.dragging .road-track {
+  width: 18px;
+}
+
+.road-progress:hover .road-bike,
+.road-progress.dragging .road-bike {
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.95));
+}
+
+nav.section-nav {
+  position: sticky;
+  top: 0;
+  transform: none;
+  visibility: visible;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+}
+
+:root {
+  --guide-header-h: 216px;   
+  --guide-nav-h: 64px;      
+  --guide-footer-h: 90px;   
+}
+
+.guide-header {
+  position: relative;
+  min-height: var(--guide-header-h);
+  z-index: 95; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #257dc8 url("Images/header.png") center / cover no-repeat;
+}
+
+.guide-header .site-header {
+  width: 100%;
+  padding: 10px 76px;
+}
+
+.guide-header .logo-png {
+  width: 240px;
+}
+
+.guide-footer {
+  height: var(--guide-footer-h);
+  background: url("Images/footer.png") left bottom / auto calc(var(--guide-footer-h) / 0.44) repeat-x;
+}
+
+body.guide-page > h1 {
+  scroll-margin-top: calc(var(--guide-nav-h) + 16px);
+}
+
+@media (max-width: 600px) {
+  :root {
+    --guide-header-h: 210px;
+    --guide-footer-h: 64px;
+  }
+  .guide-header .site-header {
+    padding: 10px 48px;
+  }
+  .guide-header .logo-png {
+    width: 160px;
+  }
+}
+
+body.guide-page > h1:nth-of-type(1)::before,
+body.guide-page > p:nth-of-type(1)::before {
+  background: url("Images/Cards/1.png") center / cover no-repeat fixed;
+}
+body.guide-page > h1:nth-of-type(2)::before,
+body.guide-page > p:nth-of-type(2)::before {
+  background: url("Images/Cards/2.png") center / cover no-repeat fixed;
+}
+body.guide-page > h1:nth-of-type(3)::before,
+body.guide-page > p:nth-of-type(3)::before {
+  background: url("Images/Cards/3.png") center / cover no-repeat fixed;
+}
+body.guide-page > h1:nth-of-type(4)::before,
+body.guide-page > p:nth-of-type(4)::before {
+  background: url("Images/Cards/4.png") center / cover no-repeat fixed;
+}
+body.guide-page > h1:nth-of-type(5)::before,
+body.guide-page > p:nth-of-type(5)::before {
+  background: url("Images/Cards/5.png") center / cover no-repeat fixed;
+}
+body.guide-page > h1:nth-of-type(6)::before,
+body.guide-page > p:nth-of-type(6)::before {
+  background: url("Images/Cards/6.png") center / cover no-repeat fixed;
+}
+body.guide-page > h1:nth-of-type(7)::before,
+body.guide-page > p:nth-of-type(7)::before {
+  background: url("Images/Cards/3.png") center / cover no-repeat fixed;
+}
+
+body.guide-page > :is(h1, p):nth-of-type(1) { background: linear-gradient(135deg, rgba(158, 209, 238, 0.88), rgba(158, 209, 238, 0.88)); }
+body.guide-page > :is(h1, p):nth-of-type(2) { background: linear-gradient(135deg, rgba(255, 227, 224, 0.88), rgba(255, 201, 194, 0.88)); }
+body.guide-page > :is(h1, p):nth-of-type(3) { background: linear-gradient(135deg, rgba(232, 228, 255, 0.88), rgba(210, 203, 255, 0.88)); }
+body.guide-page > :is(h1, p):nth-of-type(4) { background: linear-gradient(135deg, rgba(220, 236, 255, 0.88), rgba(188, 217, 255, 0.88)); }
+body.guide-page > :is(h1, p):nth-of-type(5) { background: linear-gradient(135deg, rgba(224, 245, 220, 0.88), rgba(196, 234, 188, 0.88)); }
+body.guide-page > :is(h1, p):nth-of-type(6) { background: linear-gradient(135deg, rgba(255, 240, 214, 0.88), rgba(255, 224, 168, 0.88)); }
+body.guide-page > :is(h1, p):nth-of-type(7) { background: linear-gradient(135deg, rgba(232, 228, 255, 0.88), rgba(210, 203, 255, 0.88)); }
+body.guide-page > h1::before {
+  top: -34px;
+  bottom: -2px;
+}
+body.guide-page > p::before {
+  top: -2px;
+  bottom: -2px;
+}
+
+body.guide-page > h1:nth-of-type(1)::before {
+  top: -90px;
+}
+
+body.guide-page > p:nth-of-type(7)::before {
+  bottom: calc(-1 * var(--guide-footer-h));
+}
+body.guide-page > p {
+  display: flow-root;
+}
+  
+ @media (max-width: 600px) {
+      body.guide-page > h1,
+      body.guide-page > p {
+        padding-left: 18px;
+        padding-right: 18px;
+      }
+      body.guide-page > h1 {
+        padding-top: 28px;
+        font-size: 1.5rem;
+        line-height: 1.25;
+      }
+      body.guide-page > p {
+        padding-bottom: 28px;
+        text-align: left;
+      }
+
+      .section-nav {
+        padding: 8px 44px 8px 10px;
+        gap: 6px;
+        scrollbar-width: none;
+        overscroll-behavior-x: contain;
+      }
+      .section-nav::-webkit-scrollbar { display: none; }
+      .section-nav a { padding: 10px 14px; font-size: 0.85rem; }
+
+      .back-top { padding: 12px 20px; }
+
+      .road-progress { width: 36px; }
+      .road-track { right: 6px; width: 10px; }
+      .road-progress:hover .road-track,
+      .road-progress.dragging .road-track { width: 14px; }
+      .road-bike {
+        right: 2px;
+        width: 28px;
+        height: 28px;
+        font-size: 22px;
+        line-height: 28px;
+      }
+    }
+
+    @supports (-webkit-touch-callout: none) {
+      body.guide-page > :is(h1, p):nth-of-type(n)::before {
+        display: none;
+      }
+    }
+  </style>
+
+</head>
+<body class="guide-page">
+
+<div class="road-progress" id="roadProgress" aria-hidden="true">
+    <div class="road-track"><div class="road-fill"></div></div>
+    <span class="road-bike">🚲</span>
+  </div>
+
+  <div class="guide-header">
+    <header class="site-header">
+      <a href="index.html" class="logo-link">
+        <img class="logo-png" src="Images/Logo.png" alt="Home">
+      </a>
+      <nav class="nav-links">
+        <a href="about.html" class="nav-btn">About Us</a>
+      </nav>
+    </header>
+  </div>
+   <nav class="section-nav" aria-label="Section navigation">
+    <a href="#technical-description">Technical Description</a>
+    <a href="#accessories">Accessories</a>
+    <a href="#warranties">Warranties</a>
+    <a href="#hazard-alerts">Hazard Alerts</a>
+    <a href="#faqs">FAQ's</a>
+    <a href="#definitions-of-terminology">Definitions of Terminology</a>
+    <a href="#reference">Reference</a>
+  </nav>
+
+ <div class="card-grid" aria-hidden="true"></div>
+
+ <h1 id="technical-description">Technical Description</h1>
+<p>
+<span class="g-para">The product is a conventional human-powered bicycle consisting of a rigid structural frame, front-fork steering system, two wheel assemblies, pedal-operated drivetrain, braking system, saddle, and associated fasteners and hardware.</span>
+<span class="g-sub">General Physical Description</span>
+<span class="g-table" role="table">
+<span class="g-row" role="row"><span class="g-th" role="columnheader">Feature</span><span class="g-th" role="columnheader">General Description</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Vehicle type</span><span class="g-td" role="cell">Two-wheeled, single-rider bicycle</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Propulsion</span><span class="g-td" role="cell">Human-powered pedal and chain drive</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Steering</span><span class="g-td" role="cell">Front fork and handlebar controlled</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Drive wheel</span><span class="g-td" role="cell">Rear wheel</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Braking</span><span class="g-td" role="cell">Rim brake or disc brake, depending on configuration</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Frame configuration</span><span class="g-td" role="cell">Generally rigid diamond-style frame</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Primary use</span><span class="g-td" role="cell">Transportation, recreation, exercise, and general road use</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Terrain</span><span class="g-td" role="cell">Paved roads and compatible light terrain</span></span>
+</span>
+<span class="g-sub">General Dimensions and Size</span>
+<span class="g-table" role="table">
+<span class="g-row" role="row"><span class="g-th" role="columnheader">Dimension</span><span class="g-th" role="columnheader">Typical General Range</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Overall length</span><span class="g-td" role="cell">1,700–1,800 mm</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Overall height</span><span class="g-td" role="cell">950–1,100 mm</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Overall width</span><span class="g-td" role="cell">600–750 mm (set by the handlebar width)</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Wheel diameter</span><span class="g-td" role="cell">26–29 in / approximately 660–737 mm</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Tire width</span><span class="g-td" role="cell">35–60 mm</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Wheelbase</span><span class="g-td" role="cell">1,000–1,100 mm</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Crank arm length</span><span class="g-td" role="cell">165–175 mm</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Handlebar width</span><span class="g-td" role="cell">600–750 mm</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Seatpost diameter</span><span class="g-td" role="cell">27.2–31.6 mm</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Ground clearance</span><span class="g-td" role="cell">70–120 mm</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Frame size</span><span class="g-td" role="cell">Approximately 450–560 mm</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Frame size is measured</span><span class="g-td" role="cell">From the center of the bottom bracket to the top of the seat tube</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Weight of bicycle</span><span class="g-td" role="cell">10–16 kg</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Standover height</span><span class="g-td" role="cell">740–900 mm (top tube height above ground)</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Saddle height range</span><span class="g-td" role="cell">700–1,000 mm (ground to top of saddle)</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Bottom-bracket height</span><span class="g-td" role="cell">260–300 mm above ground</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Bottom-bracket drop</span><span class="g-td" role="cell">55–80 mm below the wheel-axle centerline</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Chainstay length</span><span class="g-td" role="cell">420–460 mm</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Head-tube angle</span><span class="g-td" role="cell">65°–73°, depending on bicycle type</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Seat-tube angle</span><span class="g-td" role="cell">71°–75°</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Fork offset (rake)</span><span class="g-td" role="cell">40–50 mm</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Front hub width (axle spacing)</span><span class="g-td" role="cell">100 mm</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Rear hub width (axle spacing)</span><span class="g-td" role="cell">130–142 mm</span></span>
+</span>
+<span class="g-note">Note: Actual dimensions vary according to bicycle type, frame size, wheel size, component selection, and manufacturer design.</span>
+<span class="g-sub">Shape and Geometric Configuration</span>
+<span class="g-para">The bike frame uses a front triangle and rear triangle. The front triangle consists of the head tube, top tube, down tube, seat tube, and bottom-bracket region. The rear triangle consists primarily of the chainstays and seatstays extending toward the rear axle.</span>
+<span class="g-list" role="list">
+<span class="g-item" role="listitem">The head tube supports the steering and headset assembly.</span>
+<span class="g-item" role="listitem">The top tube and down tube connect the head tube to the seat-tube region.</span>
+<span class="g-item" role="listitem">The seat tube supports the seatpost and saddle.</span>
+<span class="g-item" role="listitem">The bottom-bracket shell supports the crank and bottom-bracket assembly.</span>
+<span class="g-item" role="listitem">The chainstays and seatstays locate and support the rear wheel.</span>
+<span class="g-item" role="listitem">The fork supports the front wheel and provides steering.</span>
+</span>
+<span class="g-sub">Frame Specifications and Construction</span>
+<span class="g-table" role="table">
+<span class="g-row" role="row"><span class="g-th" role="columnheader">Frame Element</span><span class="g-th" role="columnheader">Function</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Head tube</span><span class="g-td" role="cell">Supports headset, steerer, and front steering assembly</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Top tube</span><span class="g-td" role="cell">Structural connection between head tube and seat-tube region</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Down tube</span><span class="g-td" role="cell">Major structural member connecting head tube to bottom-bracket region</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Seat tube</span><span class="g-td" role="cell">Supports seatpost and connects the frame to the bottom-bracket area</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Chainstays</span><span class="g-td" role="cell">Transfer loads between bottom-bracket region and rear axle</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Seatstays</span><span class="g-td" role="cell">Support the rear triangle and rear axle region</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Bottom-bracket shell</span><span class="g-td" role="cell">Mounting structure for the bottom-bracket assembly</span></span>
+</span>
+<span class="g-para">Common frame materials include aluminum, carbon fiber, steel, and titanium. The actual material and construction may vary.</span>
+<span class="g-sub">Materials of Construction</span>
+<span class="g-table" role="table">
+<span class="g-row" role="row"><span class="g-th" role="columnheader">Component</span><span class="g-th" role="columnheader">Materials</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Frame</span><span class="g-td" role="cell">Aluminum</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Fork</span><span class="g-td" role="cell">Aluminum</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Handlebar / stem</span><span class="g-td" role="cell">Aluminum</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Rims</span><span class="g-td" role="cell">Aluminum</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Spokes</span><span class="g-td" role="cell">Stainless steel</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Hub</span><span class="g-td" role="cell">Aluminum body with steel axle/bearings</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Crank</span><span class="g-td" role="cell">Aluminum</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Chain / sprockets</span><span class="g-td" role="cell">Hardened alloy steel</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Brake rotor</span><span class="g-td" role="cell">Stainless steel</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Brake caliper</span><span class="g-td" role="cell">Aluminum</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Brake pads</span><span class="g-td" role="cell">Friction compound</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Seatpost</span><span class="g-td" role="cell">Aluminum</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Saddle rails</span><span class="g-td" role="cell">Steel</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Saddle cover</span><span class="g-td" role="cell">Synthetic leather</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Tire</span><span class="g-td" role="cell">Rubber with textile casing</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Inner tube</span><span class="g-td" role="cell">Synthetic rubber</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Pedals</span><span class="g-td" role="cell">Aluminum body with steel axle</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Headset bearings and cups</span><span class="g-td" role="cell">Steel</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Bottom-bracket cups and bearings</span><span class="g-td" role="cell">Aluminum</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Chainrings</span><span class="g-td" role="cell">Aluminum alloy</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Rim tape and valve</span><span class="g-td" role="cell">Rubber rim tape</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Spoke nipples</span><span class="g-td" role="cell">Aluminum alloy</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Derailleurs</span><span class="g-td" role="cell">Aluminum body</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Shifters and brake levers</span><span class="g-td" role="cell">Aluminum</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Cable inner wires</span><span class="g-td" role="cell">Stainless</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Cable housing</span><span class="g-td" role="cell">Steel coil</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Hydraulic hose</span><span class="g-td" role="cell">Braided reinforced polymer</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Brake fluid (hydraulic discs)</span><span class="g-td" role="cell">DOT 4/5.1 glycol fluid</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Grips / handlebar tape</span><span class="g-td" role="cell">Rubber</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Reflectors</span><span class="g-td" role="cell">Acrylic</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Lights</span><span class="g-td" role="cell">Aluminum housing with rechargeable lithium-ion cell</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Kickstand, fenders, rack</span><span class="g-td" role="cell">Aluminum</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Fasteners</span><span class="g-td" role="cell">Alloy steel</span></span>
+</span>
+<span class="g-sub g-major">General Specifications</span>
+<span class="g-note">Note: All sizes, materials and torque values in this manual are typical references for a general adult bicycle. The marking on the actual component, or the component maker's instructions, always takes priority.</span>
+<span class="g-sub">Front Fork, Headset, Handlebar, and Stem</span>
+<span class="g-para">The steering assembly consists of the front fork, steerer, headset bearings and retention components, stem, handlebar, and grips or handlebar tape. The headset allows the fork and handlebar to rotate smoothly within the frame.</span>
+<span class="g-table" role="table">
+<span class="g-row" role="row"><span class="g-th" role="columnheader">Component</span><span class="g-th" role="columnheader">General Specification / Description</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Handlebar width</span><span class="g-td" role="cell">Approximately 600–750 mm</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Common stem clamp diameter</span><span class="g-td" role="cell">31.8 mm</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Typical stem length</span><span class="g-td" role="cell">60–120 mm</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Headset</span><span class="g-td" role="cell">Upper/lower bearings, seals, compression/retention components, spacers, and top cap</span></span>
+</span>
+<span class="g-sub">Wheel, Hub, Axle, Rim, and Spoke Specifications</span>
+<span class="g-para">Each wheel assembly consists of a hub, axle, bearings, spokes, rim, tire, and either an inner tube or a tubeless system.</span>
+<span class="g-table" role="table">
+<span class="g-row" role="row"><span class="g-th" role="columnheader">Wheel Feature</span><span class="g-th" role="columnheader">General Information</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Common wheel sizes</span><span class="g-td" role="cell">26, 27.5, 28, and 29 in</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Hub</span><span class="g-td" role="cell">Supports axle, bearings, and wheel rotation</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Spokes</span><span class="g-td" role="cell">Connect hub to rim and maintain wheel structure</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Rim</span><span class="g-td" role="cell">Supports tire and interfaces with spokes</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Tire system</span><span class="g-td" role="cell">Inner tube or tubeless, depending on design</span></span>
+</span>
+<span class="g-sub">Tires and Recommended Tire Pressure</span>
+<span class="g-para">The general specification provides a recommended starting pressure range of 45–60 PSI. A general reference is approximately 45–55 PSI for the front tire and 50–60 PSI for the rear tire.</span>
+<span class="g-table" role="table">
+<span class="g-row" role="row"><span class="g-th" role="columnheader">Tire Position</span><span class="g-th" role="columnheader">Recommended Starting Pressure</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Overall starting range</span><span class="g-td" role="cell">45–60 PSI</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Front tire</span><span class="g-td" role="cell">Approximately 45–55 PSI</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Rear tire</span><span class="g-td" role="cell">Approximately 50–60 PSI</span></span>
+</span>
+<span class="g-note">Note: These values are starting references only. Actual tire pressure must be adjusted according to tire width, rider mass, cargo/load, terrain, riding conditions, and the tire manufacturer's stated pressure range. The tire sidewall/manufacturer maximum must not be exceeded.</span>
+<span class="g-para">EXAMPLE: A 75 kg rider on 38 mm tires might start at about 50 PSI front and 55 PSI rear, then adjust in 2–3 PSI steps. A heavier rider or a loaded rack needs more pressure on the rear tire.</span>
+<span class="g-table" role="table">
+<span class="g-row" role="row"><span class="g-th" role="columnheader">Example Condition</span><span class="g-th" role="columnheader">Starting Reference</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Rider mass</span><span class="g-td" role="cell">75 kg</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Tire width</span><span class="g-td" role="cell">38 mm</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Front tire starting pressure</span><span class="g-td" role="cell">About 50 PSI</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Rear tire starting pressure</span><span class="g-td" role="cell">About 55 PSI</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Adjustment step</span><span class="g-td" role="cell">2–3 PSI</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Heavier rider or loaded rack</span><span class="g-td" role="cell">Needs more pressure on the rear tire</span></span>
+</span>
+<span class="g-sub">Drivetrain Specifications</span>
+<span class="g-para">The drivetrain transfers rider input from the pedals to the rear wheel through the crankset, chainring, chain, rear sprocket or cassette, and rear hub.</span>
+<span class="g-para">Power path: Rider → Pedals → Crankset → Chainring → Chain → Rear Sprocket/Cassette → Rear Hub → Rear Wheel.</span>
+<span class="g-table" role="table">
+<span class="g-row" role="row"><span class="g-th" role="columnheader">Component</span><span class="g-th" role="columnheader">General Description</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Pedals</span><span class="g-td" role="cell">Provide the rider interface for applying force</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Crank arms</span><span class="g-td" role="cell">Transmit pedal force to the chainrings</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Chainrings</span><span class="g-td" role="cell">Transfer crank rotation to the chain</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Bottom bracket</span><span class="g-td" role="cell">Supports crank rotation within the frame</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Chain</span><span class="g-td" role="cell">Transfers rotational force to the rear sprocket</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Rear sprocket/cassette</span><span class="g-td" role="cell">Transfers chain force to the rear hub</span></span>
+</span>
+<span class="g-sub">Gear-Shifting System</span>
+<span class="g-para">Where equipped with multiple gears, the shifting system may use shift levers, cables and housing, front and/or rear derailleurs, and multiple sprockets. Conventional mechanical shifting uses cable tension to move the derailleur.</span>
+<span class="g-para">Typical rear cassette/freewheel configurations may contain approximately 7–12 sprockets.</span>
+<span class="g-sub">Braking System</span>
+<span class="g-para">The bicycle may use rim brakes or disc brakes. Disc brakes may be mechanical or hydraulic. The braking system converts lever input into friction at the rim or brake rotor.</span>
+<span class="g-para">Brake path: Brake Lever → Cable/Hydraulic System → Caliper → Pad → Rim/Rotor → Wheel.</span>
+<span class="g-table" role="table">
+<span class="g-row" role="row"><span class="g-th" role="columnheader">Brake Type</span><span class="g-th" role="columnheader">Main Components</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Rim brake</span><span class="g-td" role="cell">Brake lever, cable/housing, caliper, brake arms, pads, and rim braking surface</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Mechanical disc</span><span class="g-td" role="cell">Brake lever, cable/housing, caliper, pads, rotor, and rotor fasteners</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Hydraulic disc</span><span class="g-td" role="cell">Brake lever/master cylinder, hydraulic hose, caliper, pads, rotor, and fittings</span></span>
+</span>
+<span class="g-sub">Saddle and Seatpost</span>
+<span class="g-table" role="table">
+<span class="g-row" role="row"><span class="g-th" role="columnheader">Component</span><span class="g-th" role="columnheader">General Information</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Seatpost diameters</span><span class="g-td" role="cell">27.2, 30.9, and 31.6 mm are common sizes</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Saddle</span><span class="g-td" role="cell">Cover, padding, shell, rails, and rail clamp</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Seatpost clamp</span><span class="g-td" role="cell">Secures the seatpost to the frame</span></span>
+</span>
+<span class="g-note">Note: Actual seatpost diameter must match the frame's specified seat-tube interface.</span>
+<span class="g-sub">Capacity and Functional Capability</span>
+<span class="g-para">The bicycle is intended for a single rider. Total load includes the rider, bicycle, accessories, and cargo. A typical adult-bicycle reference may fall around 100–125 kg total load, but the actual permitted capacity is manufacturer- and model-specific and must be verified before use.</span>
+<span class="g-list" role="list">
+<span class="g-item" role="listitem">Provides human-powered propulsion.</span>
+<span class="g-item" role="listitem">Provides directional control through the handlebar and front fork.</span>
+<span class="g-item" role="listitem">Provides speed reduction and stopping through the braking system.</span>
+<span class="g-item" role="listitem">Provides gear selection where a multi-speed drivetrain is installed.</span>
+</span>
+<span class="g-sub">Fasteners and Retention Components</span>
+<span class="g-para">Important fastening locations include the stem clamp, handlebar clamp, seatpost clamp, brake mounting bolts, rotor bolts or lockring, crank fasteners, axle hardware, and derailleur mounting hardware. Exact fastener sizes, thread specifications, and torque values are model-specific and must be verified against the applicable component instructions.</span>
+<span class="g-sub">Bike Components in Groups</span>
+<span class="g-table" role="table">
+<span class="g-row" role="row"><span class="g-th" role="columnheader">Group</span><span class="g-th" role="columnheader">Assembly</span><span class="g-th" role="columnheader">Primary Parts / CAD Content</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">01</span><span class="g-td" role="cell">Frame Assembly</span><span class="g-td" role="cell">Frame, head tube, top tube, down tube, seat tube, chainstays, seatstays, bottom-bracket shell, frame hardware</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">02</span><span class="g-td" role="cell">Front Fork Assembly</span><span class="g-td" role="cell">Fork blades, fork crown, steerer, dropout/axle interfaces, fork hardware</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">03</span><span class="g-td" role="cell">Headset &amp; Steering Assembly</span><span class="g-td" role="cell">Upper/lower bearings, cups or bearing seats, seals, compression ring, spacers, top cap, retention hardware</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">04</span><span class="g-td" role="cell">Handlebar &amp; Stem Assembly</span><span class="g-td" role="cell">Stem, handlebar, clamp hardware, grips/tape, plugs</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">05</span><span class="g-td" role="cell">Front Wheel Assembly</span><span class="g-td" role="cell">Front hub, axle, bearings, spokes, rim, tire, tube/tubeless components</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">06</span><span class="g-td" role="cell">Rear Wheel Assembly</span><span class="g-td" role="cell">Rear hub, axle, bearings, spokes, rim, tire, tube/tubeless components</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">07</span><span class="g-td" role="cell">Crank &amp; Bottom Bracket Assembly</span><span class="g-td" role="cell">Bottom bracket, spindle, crank arms, crank fasteners</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">08</span><span class="g-td" role="cell">Pedal Assembly</span><span class="g-td" role="cell">Left pedal, right pedal, pedal axles, pedal bearings/body</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">09</span><span class="g-td" role="cell">Front Drivetrain Assembly</span><span class="g-td" role="cell">Crankset, chainrings, chainring bolts or direct-mount interface</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">10</span><span class="g-td" role="cell">Rear Drivetrain Assembly</span><span class="g-td" role="cell">Cassette/freewheel, rear hub drive interface, lockring or retaining hardware</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">11</span><span class="g-td" role="cell">Shifting System</span><span class="g-td" role="cell">Shift levers, cables, housing, front/rear derailleur, adjustment hardware</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">12</span><span class="g-td" role="cell">Front Brake Assembly</span><span class="g-td" role="cell">Front lever/control, cable or hose, caliper, pads, mounting hardware, rotor/rim interface</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">13</span><span class="g-td" role="cell">Rear Brake Assembly</span><span class="g-td" role="cell">Rear lever/control, cable or hose, caliper, pads, mounting hardware, rotor/rim interface</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">14</span><span class="g-td" role="cell">Saddle &amp; Seatpost Assembly</span><span class="g-td" role="cell">Saddle, rails, seatpost, saddle clamp, seatpost clamp</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">15</span><span class="g-td" role="cell">Suspension Assembly (where applicable)</span><span class="g-td" role="cell">Suspension fork or other bicycle suspension components and adjustment hardware</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">16</span><span class="g-td" role="cell">Accessories &amp; Mounting Components</span><span class="g-td" role="cell">Bottle cage, reflectors, rack/fender mounts, kickstand, and other model-specific accessories</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">17</span><span class="g-td" role="cell">General Fasteners &amp; Retention Hardware</span><span class="g-td" role="cell">Bolts, nuts, washers, spacers, clips, lockrings, retaining hardware</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">18</span><span class="g-td" role="cell">Complete Bicycle Assembly</span><span class="g-td" role="cell">Integrated final assembly of all installed groups</span></span>
+</span>
+<span class="g-sub">List of Materials</span>
+<span class="g-scroll">
+<span class="g-table" role="table">
+<span class="g-row" role="row"><span class="g-th" role="columnheader">Item No.</span><span class="g-th" role="columnheader">Group-Part No.</span><span class="g-th" role="columnheader">Part Name</span><span class="g-th" role="columnheader">Quantity</span><span class="g-th" role="columnheader">Specification / Size</span><span class="g-th" role="columnheader">Notes</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">1</span><span class="g-td" role="cell">01-01</span><span class="g-td" role="cell">Frame</span><span class="g-td" role="cell">1</span><span class="g-td" role="cell">Model-specific ; 450–560 mm; head tube for 1-1/8 in steerer</span><span class="g-td" role="cell">Main structural assembly</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">2</span><span class="g-td" role="cell">01-02</span><span class="g-td" role="cell">Rear dropout / derailleur hanger</span><span class="g-td" role="cell">1</span><span class="g-td" role="cell">Replaceable hanger; model-specific</span><span class="g-td" role="cell">Mounts rear derailleur</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">3</span><span class="g-td" role="cell">01-03</span><span class="g-td" role="cell">Frame hardware (bosses, cable guides, stops)</span><span class="g-td" role="cell">1 set</span><span class="g-td" role="cell">M5 bosses; guides as fitted</span><span class="g-td" role="cell">Bottle cage, rack and fender mounts</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">4</span><span class="g-td" role="cell">02-01</span><span class="g-td" role="cell">Front Fork</span><span class="g-td" role="cell">1</span><span class="g-td" role="cell">Model-specific ; 1-1/8 in steerer; offset 40–50 mm</span><span class="g-td" role="cell">Steering support</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">5</span><span class="g-td" role="cell">03-01</span><span class="g-td" role="cell">Headset Bearing Set</span><span class="g-td" role="cell">1 set</span><span class="g-td" role="cell">Model-specific ; ZS44 upper, ZS44/EC44 lower</span><span class="g-td" role="cell">Upper/lower bearing components</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">6</span><span class="g-td" role="cell">03-02</span><span class="g-td" role="cell">Crown race</span><span class="g-td" role="cell">1</span><span class="g-td" role="cell">Fits the 1-1/8 in steerer</span><span class="g-td" role="cell">Sits on the fork crown</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">7</span><span class="g-td" role="cell">03-03</span><span class="g-td" role="cell">Compression plug / star nut</span><span class="g-td" role="cell">1</span><span class="g-td" role="cell">1-1/8 in</span><span class="g-td" role="cell">Holds top-cap preload</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">8</span><span class="g-td" role="cell">03-04</span><span class="g-td" role="cell">Spacer set</span><span class="g-td" role="cell">1 set</span><span class="g-td" role="cell">1-1/8 in inner diameter; 5–20 mm thick</span><span class="g-td" role="cell">Sets stem height</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">9</span><span class="g-td" role="cell">03-05</span><span class="g-td" role="cell">Top cap and bolt</span><span class="g-td" role="cell">1 set</span><span class="g-td" role="cell">M6 bolt</span><span class="g-td" role="cell">Sets headset preload only</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">10</span><span class="g-td" role="cell">04-01</span><span class="g-td" role="cell">Stem</span><span class="g-td" role="cell">1</span><span class="g-td" role="cell">Model-specific ; 31.8 mm clamp; 60–120 mm length</span><span class="g-td" role="cell">Handlebar support</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">11</span><span class="g-td" role="cell">04-02</span><span class="g-td" role="cell">Handlebar</span><span class="g-td" role="cell">1</span><span class="g-td" role="cell">Model-specific ; 31.8 mm clamp; 600–750 mm width</span><span class="g-td" role="cell">Steering control</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">12</span><span class="g-td" role="cell">04-03</span><span class="g-td" role="cell">Grips / handlebar tape</span><span class="g-td" role="cell">1 set</span><span class="g-td" role="cell">Grips 130–135 mm long</span><span class="g-td" role="cell">Rider hand contact</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">13</span><span class="g-td" role="cell">04-04</span><span class="g-td" role="cell">Bar-end plugs</span><span class="g-td" role="cell">2</span><span class="g-td" role="cell">Fit the bar end</span><span class="g-td" role="cell">Required for safety</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">14</span><span class="g-td" role="cell">05-01</span><span class="g-td" role="cell">Front Wheel</span><span class="g-td" role="cell">1</span><span class="g-td" role="cell">Model-specific ; 26–29 in; 28–36 spokes; 100 mm hub</span><span class="g-td" role="cell">Complete front wheel</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">15</span><span class="g-td" role="cell">05-02</span><span class="g-td" role="cell">Front tire</span><span class="g-td" role="cell">1</span><span class="g-td" role="cell">35–60 mm wide; size on sidewall</span><span class="g-td" role="cell">Rotation arrow forward</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">16</span><span class="g-td" role="cell">05-03</span><span class="g-td" role="cell">Front inner tube</span><span class="g-td" role="cell">1</span><span class="g-td" role="cell">Matches tire; Presta or Schrader valve</span><span class="g-td" role="cell">Not used on tubeless</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">17</span><span class="g-td" role="cell">05-04</span><span class="g-td" role="cell">Front rim tape</span><span class="g-td" role="cell">1</span><span class="g-td" role="cell">Width matches rim</span><span class="g-td" role="cell">Covers spoke holes</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">18</span><span class="g-td" role="cell">05-05</span><span class="g-td" role="cell">Front axle (quick-release or thru-axle)</span><span class="g-td" role="cell">1</span><span class="g-td" role="cell">100 mm; 5 mm QR or 12 mm thru-axle</span><span class="g-td" role="cell">Secures wheel</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">19</span><span class="g-td" role="cell">05-06</span><span class="g-td" role="cell">Front disc rotor (disc brakes only)</span><span class="g-td" role="cell">1</span><span class="g-td" role="cell">140–203 mm; 6-bolt or Center Lock</span><span class="g-td" role="cell">Fit before wheel install</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">20</span><span class="g-td" role="cell">06-01</span><span class="g-td" role="cell">Rear Wheel</span><span class="g-td" role="cell">1</span><span class="g-td" role="cell">Model-specific ; 26–29 in; 28–36 spokes; 130–142 mm hub</span><span class="g-td" role="cell">Complete rear wheel</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">21</span><span class="g-td" role="cell">06-02</span><span class="g-td" role="cell">Rear tire</span><span class="g-td" role="cell">1</span><span class="g-td" role="cell">35–60 mm wide; size on sidewall</span><span class="g-td" role="cell">Rotation arrow forward</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">22</span><span class="g-td" role="cell">06-03</span><span class="g-td" role="cell">Rear inner tube</span><span class="g-td" role="cell">1</span><span class="g-td" role="cell">Matches tire; Presta or Schrader valve</span><span class="g-td" role="cell">Not used on tubeless</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">23</span><span class="g-td" role="cell">06-04</span><span class="g-td" role="cell">Rear rim tape</span><span class="g-td" role="cell">1</span><span class="g-td" role="cell">Width matches rim</span><span class="g-td" role="cell">Covers spoke holes</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">24</span><span class="g-td" role="cell">06-05</span><span class="g-td" role="cell">Rear axle (quick-release or thru-axle)</span><span class="g-td" role="cell">1</span><span class="g-td" role="cell">130–135 mm QR or 12 × 142 mm thru-axle</span><span class="g-td" role="cell">Secures wheel</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">25</span><span class="g-td" role="cell">06-06</span><span class="g-td" role="cell">Rear disc rotor (disc brakes only)</span><span class="g-td" role="cell">1</span><span class="g-td" role="cell">140–203 mm; 6-bolt or Center Lock</span><span class="g-td" role="cell">Fit before wheel install</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">26</span><span class="g-td" role="cell">07-01</span><span class="g-td" role="cell">Bottom Bracket</span><span class="g-td" role="cell">1</span><span class="g-td" role="cell">Model-specific ; 68 or 73 mm shell; threaded or press-fit</span><span class="g-td" role="cell">Crank support</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">27</span><span class="g-td" role="cell">07-02</span><span class="g-td" role="cell">Crankset</span><span class="g-td" role="cell">1</span><span class="g-td" role="cell">Model-specific ; 165–175 mm arms; 32–44T single or 50/34T double</span><span class="g-td" role="cell">Crank and chainring assembly</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">28</span><span class="g-td" role="cell">07-03</span><span class="g-td" role="cell">Crank bolt and dust caps</span><span class="g-td" role="cell">1 set</span><span class="g-td" role="cell">Per crank standard</span><span class="g-td" role="cell">Retains crank arms</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">29</span><span class="g-td" role="cell">08-01</span><span class="g-td" role="cell">Pedals</span><span class="g-td" role="cell">2</span><span class="g-td" role="cell">Left/right ; 9/16 in × 20 TPI</span><span class="g-td" role="cell">Pedal pair</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">30</span><span class="g-td" role="cell">09-01</span><span class="g-td" role="cell">Chainring bolts / nuts</span><span class="g-td" role="cell">1 set</span><span class="g-td" role="cell">M8 × 0.75 typical</span><span class="g-td" role="cell">Per chainring count</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">31</span><span class="g-td" role="cell">10-01</span><span class="g-td" role="cell">Cassette/Freewheel</span><span class="g-td" role="cell">1</span><span class="g-td" role="cell">Model-specific ; 7–12 sprockets; 11–32T to 11–36T</span><span class="g-td" role="cell">Rear sprocket system</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">32</span><span class="g-td" role="cell">10-02</span><span class="g-td" role="cell">Chain</span><span class="g-td" role="cell">1</span><span class="g-td" role="cell">1/2 in pitch; width by speed; 100–120 links</span><span class="g-td" role="cell">Chain</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">33</span><span class="g-td" role="cell">10-03</span><span class="g-td" role="cell">Chain connecting (quick) link</span><span class="g-td" role="cell">1</span><span class="g-td" role="cell">Same speed rating as chain</span><span class="g-td" role="cell">Joins chain ends</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">34</span><span class="g-td" role="cell">10-04</span><span class="g-td" role="cell">Cassette lockring</span><span class="g-td" role="cell">1</span><span class="g-td" role="cell">Per freehub standard</span><span class="g-td" role="cell">Holds cassette</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">35</span><span class="g-td" role="cell">11-01</span><span class="g-td" role="cell">Shift Control</span><span class="g-td" role="cell">1 set</span><span class="g-td" role="cell">Model-specific ; click count = sprocket count</span><span class="g-td" role="cell">Where multi-speed</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">36</span><span class="g-td" role="cell">11-02</span><span class="g-td" role="cell">Rear derailleur</span><span class="g-td" role="cell">1</span><span class="g-td" role="cell">Same speed rating as cassette</span><span class="g-td" role="cell"></span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">37</span><span class="g-td" role="cell">11-03</span><span class="g-td" role="cell">Front derailleur (where fitted)</span><span class="g-td" role="cell">1</span><span class="g-td" role="cell">Matches chainring count</span><span class="g-td" role="cell">Double or triple only</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">38</span><span class="g-td" role="cell">11-04</span><span class="g-td" role="cell">Shift cables and housing</span><span class="g-td" role="cell">1 set</span><span class="g-td" role="cell">Wire 1.2 mm; housing 4 mm</span><span class="g-td" role="cell">Replace if frayed</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">39</span><span class="g-td" role="cell">11-05</span><span class="g-td" role="cell">Housing ferrules and cable end caps</span><span class="g-td" role="cell">1 set</span><span class="g-td" role="cell">Fit 4 mm and 5 mm housing</span><span class="g-td" role="cell">Stops fraying</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">40</span><span class="g-td" role="cell">12-01</span><span class="g-td" role="cell">Front Brake</span><span class="g-td" role="cell">1 set</span><span class="g-td" role="cell">Model-specific ; rim or disc; rotor 140–203 mm</span><span class="g-td" role="cell">Brake assembly</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">41</span><span class="g-td" role="cell">12-02</span><span class="g-td" role="cell">Front brake lever</span><span class="g-td" role="cell">1</span><span class="g-td" role="cell">Matches brake type</span><span class="g-td" role="cell">Controls front brake</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">42</span><span class="g-td" role="cell">12-03</span><span class="g-td" role="cell">Front brake cable and housing, or hydraulic hose</span><span class="g-td" role="cell">1</span><span class="g-td" role="cell">Per brake type</span><span class="g-td" role="cell">No sharp bends</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">43</span><span class="g-td" role="cell">12-04</span><span class="g-td" role="cell">Front brake pads</span><span class="g-td" role="cell">1 pair</span><span class="g-td" role="cell">Organic or sintered; shape matches caliper</span><span class="g-td" role="cell">Keep oil-free</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">44</span><span class="g-td" role="cell">12-05</span><span class="g-td" role="cell">Hydraulic brake fluid (hydraulic only)</span><span class="g-td" role="cell">As needed</span><span class="g-td" role="cell">As the brake maker specifies</span><span class="g-td" role="cell">Never mix types</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">45</span><span class="g-td" role="cell">13-01</span><span class="g-td" role="cell">Rear Brake</span><span class="g-td" role="cell">1 set</span><span class="g-td" role="cell">Model-specific ; rim or disc; rotor 140–203 mm</span><span class="g-td" role="cell">Brake assembly</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">46</span><span class="g-td" role="cell">13-02</span><span class="g-td" role="cell">Rear brake lever</span><span class="g-td" role="cell">1</span><span class="g-td" role="cell">Matches brake type</span><span class="g-td" role="cell">Controls rear brake</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">47</span><span class="g-td" role="cell">13-03</span><span class="g-td" role="cell">Rear brake cable and housing, or hydraulic hose</span><span class="g-td" role="cell">1</span><span class="g-td" role="cell">Per brake type</span><span class="g-td" role="cell">No sharp bends</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">48</span><span class="g-td" role="cell">13-04</span><span class="g-td" role="cell">Rear brake pads</span><span class="g-td" role="cell">1 pair</span><span class="g-td" role="cell">Organic or sintered; shape matches caliper</span><span class="g-td" role="cell">Keep oil-free</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">49</span><span class="g-td" role="cell">14-01</span><span class="g-td" role="cell">Seatpost</span><span class="g-td" role="cell">1</span><span class="g-td" role="cell">27.2–31.6 mm typical ; 300–450 mm long; 0–25 mm setback</span><span class="g-td" role="cell">Verify actual frame specification</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">50</span><span class="g-td" role="cell">14-02</span><span class="g-td" role="cell">Saddle</span><span class="g-td" role="cell">1</span><span class="g-td" role="cell">Model-specific ; 130–155 mm wide; 7 mm rails</span><span class="g-td" role="cell">Rider support</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">51</span><span class="g-td" role="cell">14-03</span><span class="g-td" role="cell">Seatpost clamp (seat collar)</span><span class="g-td" role="cell">1</span><span class="g-td" role="cell">Sized to seat tube outside diameter (34.9 mm common)</span><span class="g-td" role="cell">Or quick-release collar</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">52</span><span class="g-td" role="cell">14-04</span><span class="g-td" role="cell">Dropper (telescopic) seatpost (optional)</span><span class="g-td" role="cell">1</span><span class="g-td" role="cell">27.2–31.6 mm; 100–150 mm drop</span><span class="g-td" role="cell">Replaces part 14-01 when fitted</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">53</span><span class="g-td" role="cell">15-01</span><span class="g-td" role="cell">Suspension fork (where applicable)</span><span class="g-td" role="cell">1</span><span class="g-td" role="cell">60–150 mm travel</span><span class="g-td" role="cell">Replaces part 02-01 when fitted</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">54</span><span class="g-td" role="cell">15-02</span><span class="g-td" role="cell">Rear shock and swingarm pivots (full-suspension only)</span><span class="g-td" role="cell">1 set</span><span class="g-td" role="cell">Per frame maker</span><span class="g-td" role="cell">Not on rigid or hardtail frames</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">55</span><span class="g-td" role="cell">16-01</span><span class="g-td" role="cell">Front light (white)</span><span class="g-td" role="cell">1</span><span class="g-td" role="cell">USB-rechargeable, 100+ lumens</span><span class="g-td" role="cell">For night riding</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">56</span><span class="g-td" role="cell">16-02</span><span class="g-td" role="cell">Rear light (red)</span><span class="g-td" role="cell">1</span><span class="g-td" role="cell">USB-rechargeable, steady/flash</span><span class="g-td" role="cell">For night riding</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">57</span><span class="g-td" role="cell">16-03</span><span class="g-td" role="cell">Reflector set</span><span class="g-td" role="cell">1 set</span><span class="g-td" role="cell">White front, red rear, amber pedal and wheel reflectors</span><span class="g-td" role="cell">Fit per local rules</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">58</span><span class="g-td" role="cell">16-04</span><span class="g-td" role="cell">Bell</span><span class="g-td" role="cell">1</span><span class="g-td" role="cell">Clamps to a 22.2 mm bar</span><span class="g-td" role="cell">Audible warning</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">59</span><span class="g-td" role="cell">16-05</span><span class="g-td" role="cell">Bottle cage</span><span class="g-td" role="cell">1</span><span class="g-td" role="cell">M5 bolts, 64–74 mm bolt spacing</span><span class="g-td" role="cell">Optional</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">60</span><span class="g-td" role="cell">16-06</span><span class="g-td" role="cell">Kickstand</span><span class="g-td" role="cell">1</span><span class="g-td" role="cell">Length matched to wheel size</span><span class="g-td" role="cell">Optional</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">61</span><span class="g-td" role="cell">16-07</span><span class="g-td" role="cell">Fenders</span><span class="g-td" role="cell">1 set</span><span class="g-td" role="cell">Width 5 mm over tire width</span><span class="g-td" role="cell">Optional</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">62</span><span class="g-td" role="cell">17-01</span><span class="g-td" role="cell">Fastener set (bolts, nuts, washers, clips)</span><span class="g-td" role="cell">1 set</span><span class="g-td" role="cell">M5, M6, M8</span><span class="g-td" role="cell">Torque</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">63</span><span class="g-td" role="cell">17-02</span><span class="g-td" role="cell">Thread-locker, grease, carbon assembly paste</span><span class="g-td" role="cell">As needed</span><span class="g-td" role="cell">As the component maker specifies</span><span class="g-td" role="cell">Do not mix types</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">64</span><span class="g-td" role="cell">18-01</span><span class="g-td" role="cell">Complete bicycle</span><span class="g-td" role="cell">1</span><span class="g-td" role="cell">Frame size 450–560 mm</span><span class="g-td" role="cell">Final assembly and test</span></span>
+</span>
+</span>
+<span class="g-sub g-major">ASSEMBLY PROCEDURES</span>
+<span class="g-note">Note: Assembly should be performed using clean components, correct tools, compatible parts, and the manufacturer's specified torque values where available. Do not force components that do not fit correctly.</span>
+<span class="g-note">CAUTION: Do not use incompatible components.</span>
+<span class="g-sub">Required Tools</span>
+<span class="g-list" role="list">
+<span class="g-item" role="listitem">Hex/Allen key set appropriate to the component fasteners.</span>
+<span class="g-item" role="listitem">Torque wrench covering the required component torque range.</span>
+<span class="g-item" role="listitem">Open-end or pedal wrench where applicable.</span>
+<span class="g-item" role="listitem">Adjustable or component-specific wrench for axle, cassette, or bottom-bracket interfaces as required.</span>
+<span class="g-item" role="listitem">Tire levers and a suitable pump.</span>
+<span class="g-item" role="listitem">Chain tool and drivetrain tools where required.</span>
+<span class="g-item" role="listitem">Brake and shifting adjustment tools appropriate to the installed system.</span>
+<span class="g-item" role="listitem">Clean cloths and approved bicycle grease/lubricants.</span>
+</span>
+<span class="g-sub">Frame Preparation</span>
+<span class="g-list" role="list">
+<span class="g-item" role="listitem">Inspect the frame for damage, cracks, deformation, contamination, and damaged threads.</span>
+<span class="g-item" role="listitem">Confirm that all mounting interfaces are clean and compatible with the intended components.</span>
+<span class="g-item" role="listitem">Verify the frame size and component compatibility before assembly.</span>
+<span class="g-item" role="listitem">Check the bottom-bracket shell, headset interfaces, axle interfaces, brake mounts, and derailleur mounts.<span class="g-figure"><img src="Images/Technical Description/Frame Assembly.png" alt="Exploded view of the frame assembly showing main tube, seat tube, head tube, stays, and dropouts" loading="lazy"></span></span>
+</span>
+<span class="g-sub">Fork and Headset Installation</span>
+<span class="g-list" role="list">
+<span class="g-item" role="listitem">Install the lower headset components in the correct orientation.</span>
+<span class="g-item" role="listitem">Insert the fork steerer through the head tube and headset components.<span class="g-figure"><img src="Images/Technical Description/Front Fork Assembly.png" alt="Exploded view of the front fork assembly" loading="lazy"></span></span>
+<span class="g-item" role="listitem">Install upper headset bearings, compression components, and spacers in the specified order.</span>
+<span class="g-item" role="listitem">Install the stem and top-cap assembly.</span>
+<span class="g-item" role="listitem">Adjust headset preload until steering is smooth and free of excessive play.</span>
+<span class="g-item" role="listitem">Align the handlebar/stem assembly with the front wheel before final tightening.</span>
+</span>
+<span class="g-sub">Handlebar and Stem Installation</span>
+<span class="g-list" role="list">
+<span class="g-item" role="listitem">Position the handlebar centrally in the stem clamp.</span>
+<span class="g-item" role="listitem">Install clamp hardware evenly and progressively.</span>
+<span class="g-item" role="listitem">Set the handlebar angle and control position appropriate to the bicycle design.</span>
+<span class="g-item" role="listitem">Secure the stem to the steerer using the specified tightening sequence and torque.<span class="g-figure"><img src="Images/Technical Description/Handlebar Assembly.png" alt="Exploded view of the handlebar assembly with grips, brake lever, and shifter" loading="lazy"></span></span>
+</span>
+<span class="g-sub">Wheel Installation</span>
+<span class="g-list" role="list">
+<span class="g-item" role="listitem">Inspect both wheel assemblies before installation.</span>
+<span class="g-item" role="listitem">Confirm correct front/rear wheel orientation.<span class="g-figure"><img src="Images/Technical Description/Front Wheel Assembly.png" alt="Exploded view of the front wheel assembly" loading="lazy"></span><span class="g-figure"><img src="Images/Technical Description/Rear Wheel Assembly.png" alt="Exploded view of the rear wheel assembly" loading="lazy"></span></span>
+<span class="g-item" role="listitem">Install the axle or quick-release system and secure the wheel fully.</span>
+<span class="g-item" role="listitem">Confirm that the wheel is centered and rotates freely.</span>
+<span class="g-item" role="listitem">Check tire pressure and verify that the tire is seated correctly.</span>
+</span>
+<span class="g-sub">Crank and Bottom-Bracket Installation</span>
+<span class="g-list" role="list">
+<span class="g-item" role="listitem">Install the correct bottom-bracket type for the frame and crankset.</span>
+<span class="g-item" role="listitem">Install crank components in the correct left/right orientation.</span>
+<span class="g-item" role="listitem">Secure crank fasteners using the applicable manufacturer torque specification.</span>
+<span class="g-item" role="listitem">Rotate the crank by hand to confirm smooth movement and absence of binding.<span class="g-figure"><img src="Images/Technical Description/Crank & Bottom Bracket Assembly.png" alt="Exploded view of the crank and bottom-bracket assembly" loading="lazy"></span></span>
+</span>
+<span class="g-sub">Pedal Installation</span>
+<span class="g-list" role="list">
+<span class="g-item" role="listitem">Identify the left and right pedals.</span>
+<span class="g-item" role="listitem">Apply appropriate grease to pedal threads unless the component manufacturer specifies otherwise.</span>
+<span class="g-item" role="listitem">Install each pedal into its matching crank arm using the correct thread direction.</span>
+<span class="g-item" role="listitem">Secure pedals to the specified torque.</span>
+</span>
+<span class="g-sub">Drivetrain Installation</span>
+<span class="g-list" role="list">
+<span class="g-item" role="listitem">Install chainrings and crankset components according to their orientation.<span class="g-figure"><img src="Images/Technical Description/Front Drivetrain Assembly.png" alt="Exploded view of the front drivetrain assembly" loading="lazy"></span></span>
+<span class="g-item" role="listitem">Install the rear cassette/freewheel using the correct compatible hub interface.<span class="g-figure"><img src="Images/Technical Description/Rear Drivetrain Assembly.png" alt="Exploded view of the rear drivetrain assembly" loading="lazy"></span></span>
+<span class="g-item" role="listitem">Install the chain at the correct length and route it through the drivetrain.</span>
+<span class="g-item" role="listitem">Install and adjust the rear and/or front derailleur where applicable.</span>
+<span class="g-item" role="listitem">Set limit positions, cable tension, and shifting alignment.</span>
+</span>
+<span class="g-sub">Brake Installation</span>
+<span class="g-list" role="list">
+<span class="g-item" role="listitem">Install the front and rear brake assemblies.</span>
+<span class="g-item" role="listitem">Route cables/housing or hydraulic hoses without sharp bends, excessive slack, or interference.</span>
+<span class="g-item" role="listitem">Install brake pads and verify correct alignment.</span>
+<span class="g-item" role="listitem">Install rotors where disc brakes are used and secure them using the applicable retaining system.</span>
+<span class="g-item" role="listitem">Adjust brake engagement and verify that the wheel remains free of unwanted brake contact when released.</span>
+</span>
+<span class="g-sub">Saddle and Seatpost Installation</span>
+<span class="g-list" role="list">
+<span class="g-item" role="listitem">Insert the seatpost to a safe insertion depth and within the frame's minimum-insertion requirement.</span>
+<span class="g-item" role="listitem">Install and align the saddle on the seatpost clamp.</span>
+<span class="g-item" role="listitem">Set saddle height and angle according to the intended riding position.</span>
+<span class="g-item" role="listitem">Secure the seatpost and saddle-clamp hardware to the specified torque.<span class="g-figure"><img src="Images/Technical Description/Saddle & Seatpost Assembly.png" alt="Exploded view of the saddle and seatpost assembly" loading="lazy"></span></span>
+</span>
+<span class="g-sub">Suspension Installation — Where Applicable</span>
+<span class="g-list" role="list">
+<span class="g-item" role="listitem">Install the suspension component according to its specific manufacturer instructions.</span>
+<span class="g-item" role="listitem">Confirm correct orientation and axle interface.</span>
+<span class="g-item" role="listitem">Set initial adjustment values only according to the applicable component specifications.</span>
+<span class="g-item" role="listitem">Check that suspension movement is smooth and free from abnormal interference.<span class="g-figure"><img src="Images/Technical Description/Suspension Assembly.png" alt="Exploded view of the front suspension fork and rear shock assembly" loading="lazy"></span></span>
+</span>
+<span class="g-sub">Cable and Hose Routing</span>
+<span class="g-list" role="list">
+<span class="g-item" role="listitem">Route brake and shift cables/housing along the intended frame paths.<span class="g-figure"><img src="Images/Technical Description/Cable & Routing System.png" alt="Cable and hose routing system along the frame" loading="lazy"></span></span>
+<span class="g-item" role="listitem">Secure routing so that it does not contact moving wheels, tires, chains, or crank components.<span class="g-figure"><img src="Images/Technical Description/Lighting Assembly.png" alt="Exploded view of the lighting assembly" loading="lazy"></span></span>
+<span class="g-item" role="listitem">Prevent excessive bending, rubbing, pinching, or interference at the steering area.</span>
+<span class="g-item" role="listitem">Confirm that full handlebar movement does not pull or bind cables and hoses.</span>
+</span>
+<span class="g-sub">Final Assembly Inspection</span>
+<span class="g-list" role="list">
+<span class="g-item" role="listitem">Check all major fasteners and retention systems.<span class="g-figure"><img src="Images/Technical Description/Accessories & Mounting Components.png" alt="Accessories and mounting components" loading="lazy"></span></span>
+<span class="g-item" role="listitem">Verify steering movement and headset adjustment.</span>
+<span class="g-item" role="listitem">Verify front and rear wheel security.</span>
+<span class="g-item" role="listitem">Check crank and pedal installation.</span>
+<span class="g-item" role="listitem">Check shifting operation where applicable.</span>
+<span class="g-item" role="listitem">Check front and rear brake operation.</span>
+<span class="g-item" role="listitem">Check tire pressure and tire seating.</span>
+<span class="g-item" role="listitem">Perform a controlled low-speed functional test before normal use.<span class="g-figure"><img src="Images/Technical Description/Complete Bicycle Assembly.png" alt="Exploded view of the complete bicycle assembly" loading="lazy"></span></span>
+</span>
+<span class="g-sub g-major">MAINTENANCE AND INSPECTION</span>
+<span class="g-sub">Pre-Ride Inspection</span>
+<span class="g-table" role="table">
+<span class="g-row" role="row"><span class="g-th" role="columnheader">Inspection Area</span><span class="g-th" role="columnheader">Check</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Tires</span><span class="g-td" role="cell">Pressure, cuts, excessive wear, bulges, correct seating</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Wheels</span><span class="g-td" role="cell">Security, alignment, damage, unusual play</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Brakes</span><span class="g-td" role="cell">Lever operation, pad/rotor or rim condition, stopping response</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Steering</span><span class="g-td" role="cell">Headset play, smooth rotation, stem/handlebar security</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Drivetrain</span><span class="g-td" role="cell">Chain condition, lubrication, shifting function</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Crank/Pedals</span><span class="g-td" role="cell">Loose movement, damage, secure attachment</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Saddle/Seatpost</span><span class="g-td" role="cell">Height, alignment, clamp security</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Frame/Fork</span><span class="g-td" role="cell">Cracks, bends, impact damage, loose components</span></span>
+</span>
+<span class="g-sub">Component Maintenance Matrix</span>
+<span class="g-table" role="table">
+<span class="g-row" role="row"><span class="g-th" role="columnheader">Component</span><span class="g-th" role="columnheader">Routine Maintenance</span><span class="g-th" role="columnheader">Inspection / Replacement Indicator</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Frame</span><span class="g-td" role="cell">Clean and inspect</span><span class="g-td" role="cell">Cracks, deformation, impact damage, corrosion</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Fork</span><span class="g-td" role="cell">Clean and inspect</span><span class="g-td" role="cell">Damage, abnormal movement, corrosion, looseness</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Headset</span><span class="g-td" role="cell">Clean and check adjustment</span><span class="g-td" role="cell">Play, roughness, binding, damaged bearings</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Wheels</span><span class="g-td" role="cell">Clean, check security and alignment</span><span class="g-td" role="cell">Loose spokes, rim damage, bearing play, severe trueness issue</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Tires</span><span class="g-td" role="cell">Maintain pressure and inspect surface</span><span class="g-td" role="cell">Cuts, cracks, exposed casing, excessive wear</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Chain</span><span class="g-td" role="cell">Clean and lubricate as appropriate</span><span class="g-td" role="cell">Excessive wear, stiffness, corrosion</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Cassette/freewheel</span><span class="g-td" role="cell">Clean and inspect</span><span class="g-td" role="cell">Worn or damaged sprocket teeth</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Brake pads</span><span class="g-td" role="cell">Inspect and clean</span><span class="g-td" role="cell">Excessive wear, contamination, damage</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Brake rotor/rim</span><span class="g-td" role="cell">Clean and inspect</span><span class="g-td" role="cell">Damage, excessive wear, contamination</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Cables/housing</span><span class="g-td" role="cell">Inspect and clean</span><span class="g-td" role="cell">Fraying, corrosion, kinking, damaged housing</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Saddle/seatpost</span><span class="g-td" role="cell">Clean and check clamp</span><span class="g-td" role="cell">Damage, slipping, cracked components</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Pedals</span><span class="g-td" role="cell">Clean and inspect</span><span class="g-td" role="cell">Loose bearings, damaged body/axle, abnormal play</span></span>
+</span>
+<span class="g-sub">Maintenance Schedule</span>
+<span class="g-table" role="table">
+<span class="g-row" role="row"><span class="g-th" role="columnheader">Interval</span><span class="g-th" role="columnheader">Recommended Maintenance</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Before every ride</span><span class="g-td" role="cell">Tires, brakes, wheel security, steering, drivetrain, frame/fork visual inspection</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Regularly</span><span class="g-td" role="cell">Clean bicycle, inspect chain and drivetrain, check fasteners and tire condition</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">As needed</span><span class="g-td" role="cell">Lubricate chain, adjust brakes and shifting, correct tire pressure</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Periodic service</span><span class="g-td" role="cell">Inspect headset, hubs, bottom bracket, cables/housing, brake system, and wheel condition</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">After impact or abnormal event</span><span class="g-td" role="cell">Stop use and inspect frame, fork, wheels, steering, brakes, and drivetrain before riding again</span></span>
+</span>
+<span class="g-sub">Troubleshooting</span>
+<span class="g-table" role="table">
+<span class="g-row" role="row"><span class="g-th" role="columnheader">Symptom</span><span class="g-th" role="columnheader">Likely cause</span><span class="g-th" role="columnheader">Fix</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Chain skips under load</span><span class="g-td" role="cell">Worn chain or cassette, poor indexing</span><span class="g-td" role="cell">Adjust barrel adjuster; replace worn chain or cassette</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Slow or noisy shifting</span><span class="g-td" role="cell">Dirty or stretched cable, bent derailleur hanger</span><span class="g-td" role="cell">Clean and re-index; check or replace the hanger</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Chain falls off</span><span class="g-td" role="cell">Limit screws wrong, chain too long</span><span class="g-td" role="cell">Set limit screws; check chain length</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Weak brakes</span><span class="g-td" role="cell">Worn or oily pads, misaligned caliper</span><span class="g-td" role="cell">Replace or clean pads; realign caliper</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Spongy hydraulic lever</span><span class="g-td" role="cell">Air in the system</span><span class="g-td" role="cell">Have the brake bled</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Squealing disc brake</span><span class="g-td" role="cell">Contaminated pads or rotor</span><span class="g-td" role="cell">Clean with isopropyl alcohol; replace pads and bed in</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Brake rubs</span><span class="g-td" role="cell">Wheel not centered, bent rotor or rim</span><span class="g-td" role="cell">Re-seat wheel; realign caliper; true rotor or wheel</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Loose or knocking steering</span><span class="g-td" role="cell">Headset preload loose</span><span class="g-td" role="cell">Adjust preload; re-tighten stem bolts</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Wobbling wheel</span><span class="g-td" role="cell">Loose spokes or bent rim</span><span class="g-td" role="cell">Have the wheel trued</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Repeated flat tire</span><span class="g-td" role="cell">Thorn in tire, rim tape out of place, low pressure</span><span class="g-td" role="cell">Inspect tire inside; refit rim tape; correct pressure</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Creaking when pedaling</span><span class="g-td" role="cell">Dry bottom bracket, pedals, crank bolt or seatpost</span><span class="g-td" role="cell">Clean, grease and re-torque</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Saddle slips down</span><span class="g-td" role="cell">Seatpost clamp loose or dry</span><span class="g-td" role="cell">Clean and re-tighten to torque; use assembly paste</span></span>
+</span>
+<span class="g-sub">Stages of Diagnostics (Denton T., 2012)</span>
+<span class="g-table" role="table">
+<span class="g-row" role="row"><span class="g-th" role="columnheader">Stage</span><span class="g-th" role="columnheader">Action</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Verify</span><span class="g-td" role="cell">Is there actually a problem, can you confirm the symptoms?</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Collect</span><span class="g-td" role="cell">Get further information about the problem, by observation and research.</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Evaluate</span><span class="g-td" role="cell">Stop and think about the evidence.</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Test</span><span class="g-td" role="cell">Carry out further tests in a logical sequence.</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Rectify</span><span class="g-td" role="cell">Fix the problem.</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Check</span><span class="g-td" role="cell">Make sure all systems now work correctly.</span></span>
+</span>
+<span class="g-sub">Inspection Criteria</span>
+<span class="g-list" role="list">
+<span class="g-item" role="listitem">No visible cracks, major dents, structural deformation, or severe corrosion in the frame or fork.</span>
+<span class="g-item" role="listitem">No excessive bearing play in the headset, hubs, bottom bracket, or pedals.</span>
+<span class="g-item" role="listitem">Wheels are securely mounted and reasonably true for safe operation.</span>
+<span class="g-item" role="listitem">Brakes engage predictably and release without abnormal drag.</span>
+<span class="g-item" role="listitem">Chain and drivetrain components move smoothly and are free of severe corrosion or damage.</span>
+<span class="g-item" role="listitem">All critical fasteners are secure and tightened according to verified specifications.</span>
+<span class="g-item" role="listitem">Tires are properly seated and within the applicable pressure range.</span>
+</span>
+<span class="g-note">Caution: Do not ride your bicycle if it does not meet any of these points! A faulty bicycle may cause serious accidents!</span>
+<span class="g-sub">Lubrication and Consumables</span>
+<span class="g-table" role="table">
+<span class="g-row" role="row"><span class="g-th" role="columnheader">Item</span><span class="g-th" role="columnheader">General Practice</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Chain lubricant</span><span class="g-td" role="cell">Use a bicycle-appropriate chain lubricant suitable for the riding environment</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Grease</span><span class="g-td" role="cell">Use bicycle-compatible grease on applicable threaded/metal interfaces where specified</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Assembly compound</span><span class="g-td" role="cell">Use only where appropriate to the material and manufacturer instructions</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Carbon components</span><span class="g-td" role="cell">Use carbon assembly paste where specifically required; do not substitute ordinary grease where prohibited</span></span>
+<span class="g-row" role="row"><span class="g-td" role="cell">Cleaning agent</span><span class="g-td" role="cell">Use a bicycle-safe cleaner and avoid contaminating brake pads, rotors, or braking surfaces</span></span>
+</span>
+<span class="g-sub">Cleaning and Lubrication Routine</span>
+<span class="g-list" role="list">
+<span class="g-item" role="listitem">Remove dust and mud with a damp sponge and a mild, neutral cleaner.</span>
+<span class="g-item" role="listitem">Wash plastic parts with soapy water only; clean tires with soapy water and a soft brush.</span>
+<span class="g-item" role="listitem">Dry the bicycle with a soft cloth.</span>
+<span class="g-item" role="listitem">Do not use pressure washers or steam cleaners; they push water into bearings.</span>
+<span class="g-item" role="listitem">Washing removes chain lubricant, so inspect the links afterward and lubricate the chain again. Wipe off the excess, because extra lubricant attracts dirt and speeds up wear.</span>
+<span class="g-item" role="listitem">Keep lubricant away from brake rotors, pads and rims.</span>
+</span>
+<span class="g-sub">Tightening Torques</span>
+<span class="g-para">The tightening torques are very important when mounting the different parts of the bicycle. Failing to apply the correct tightening torque may cause an accident. Moreover, the fault may not be covered by warranty. Therefore, all parts must indicate the tightening torque of the bolts.</span>
+</p>
+
+ <h1 id="accessories">Accessories</h1>
+  <p>
+       <span class="g-sub">Safety</span>
+    <span class="g-list" role="list">
+      <span class="g-item" role="listitem">
+        <span class="g-line"><strong>LED Lights (Front and Rear)</strong> are essential safety accessories used to illuminate paths and ensure visibility in low light or nighttime conditions.</span>
+        <span class="g-line">Made from hard plastics, silicone or aluminum.</span>
+        <span class="g-line">Usually mounted onto the handlebars or front fork, while rear lights usually attach from the seatpost, seatstays, or back helmet.</span>
+        <span class="g-line"><strong>Preferred Bike:</strong> All bikes</span>
+      </span>
+      <span class="g-item" role="listitem">
+        <span class="g-line"><strong>Bicycle Bells and Horns</strong> are audible signaling devices used to warn or alert pedestrians, other cyclists and motorists present in the path.</span>
+        <span class="g-line">Made from brass, aluminum, steel or durable plastics.</span>
+        <span class="g-line">Attach directly on the bicycle handlebars or near the handlebar grips for easy thumb reach.</span>
+        <span class="g-line"><strong>Preferred Bikes:</strong> Commuter/City Bike, Hybrid Bike, Road Bike (urban use)</span>
+      </span>
+      <span class="g-item" role="listitem">
+        <span class="g-line"><strong>Safety &amp; Apparel (Helmet, Cycling Gloves, Padded Short, Reflective Safety Vest)</strong></span>
+        <span class="g-line">It is usually worn by a rider to protect the head from impact, prevent hand numbness and road rash, reduce friction and saddle soreness on long ride.</span>
+        <span class="g-line"><strong>Preferred:</strong> All bike types</span>
+      </span>
+      <span class="g-item" role="listitem">
+        <span class="g-line"><strong>Rearview Mirrors</strong> are designed to give riders a clear view of traffic and surroundings behind them without requiring them to turn their head, which enhance the situational awareness and safety.</span>
+        <span class="g-line">Made from durable plastics, lightweight aluminum, or stainless steel stems, featuring convex glass or shatter-resistant acrylic mirrors.</span>
+        <span class="g-line">Usually mount to the ends of handlebars, handlebar grips or on the riders helmet or glasses.</span>
+        <span class="g-line"><strong>Preferred Bikes:</strong> Commuter/City Bikes, Road Bikes, and Hybrid Bikes (especially for riding in busy traffic or urban environments).</span>
+      </span>
+    </span>
+
+    <span class="g-sub">Storage &amp; Carrying</span>
+    <span class="g-list" role="list">
+      <span class="g-item" role="listitem">
+        <span class="g-line"><strong>Rear Rack</strong> is a sturdy metal or carbon platform mounted over a bicycle rear wheel.</span>
+        <span class="g-line">Designed to hold cargo, strap down bags or support panniers for commuting touring and carrying everyday items.</span>
+
+        <span class="g-line"><strong>Prefer Bikes:</strong> Commuter/City Bikes, Touring Bikes, Gravel Bikes, and Hybrid Bikes.</span>
+      </span>
+      <span class="g-item" role="listitem">
+        <span class="g-line"><strong>Front Pannier Rack</strong> it is a specialized cargo rack mounted over the front wheel where it made of sturdy, lightweight materials such as aluminum, chromoly steel or carbon fiber.</span>
+        <span class="g-line">It is used to securely hold pannier bags and serve as weight to the front wheels making it ideal for carrying gear during bike touring, commuting and long distance travel.</span>
+        <span class="g-line"><strong>Prefer Bikes:</strong> touring, commuting/city bikes, hybrid bikes, and gravel bikes.</span>
+      </span>
+      <span class="g-item" role="listitem">
+        <span class="g-line"><strong>Cargo &amp; Family Transport (Customized Cart)</strong> designed to haul extra loads, gear, groceries or passengers.</span>
+        <span class="g-line">Typically constructed from sturdy tubular steel or aluminum framing, heavy-duty weather-resistant fabric (like canvas or polyester), and reinforced plastic or wooden base panels with pneumatic wheels.</span>
+        <span class="g-line">It mounts to the bicycle using a specialized hitch mechanism that securely connects to the rear axle, chainstay, or seatpost of the towing bike.</span>
+        <span class="g-line"><strong>Preferred Bikes:</strong> Commuter/City Bikes, Hybrid Bikes, and Utility/Cargo Bikes (primarily used in urban and neighborhood environments).</span>
+      </span>
+      <span class="g-item" role="listitem">
+        <span class="g-line"><strong>Rear Packs and Pannier Bags</strong> are cargo containers made from leathers, fabric and other materials that are durable for water resistance.</span>
+        <span class="g-line">They are typically installed in bicycle racks which are installed in the rear wheels or sometimes in front pannier racks.</span>
+        <span class="g-line">It is a storage accessory designed for commuting, grocery and everyday travel.</span>
+        <span class="g-line"><strong>Prefer Bikes:</strong> Commuter/City Bike, hybrid Bike, Gravel Bike</span>
+      </span>
+      <span class="g-item" role="listitem">
+        <span class="g-line"><strong>Front Bike Basket</strong> a convenient front mounted storage accessory designed to hold daily items easy to reach.</span>
+        <span class="g-line">Made from welded steel wire, durable plastics, aluminum, or woven natural materials like wicker/rattan with leather or plastic straps.</span>
+        <span class="g-line">Attaches directly to bicycle handlebars, front fork or head tube to ensure stability when steering.</span>
+        <span class="g-line"><strong>Preferred Bikes:</strong> Commuter/City Bikes, Hybrid Bikes, and Cruiser Bikes.</span>
+      </span>
+      <span class="g-item" role="listitem">
+        <span class="g-line"><strong>Frame / Top Tube Bags,</strong> compact storage bags that mount directly onto the bicycle frame's top tube or front triangle, to store smaller essentials.</span>
+        <span class="g-line">Typically constructed from durable, water-resistant or waterproof fabrics (such as high-denier nylon, cordura, or laminated polyester) with waterproof zippers.</span>
+        <span class="g-line">They strap or bolt directly onto the bicycle's top tube and head tube, resting right in front of the saddle or behind the stem.</span>
+        <span class="g-line"><strong>Preferred / Compatible Bikes:</strong> Gravel Bikes, Mountain Bikes, and Road Bikes.</span>
+      </span>
+    </span>
+
+
+    <span class="g-sub">Comfort &amp; Performance</span>
+    <span class="g-list" role="list">
+      <span class="g-item" role="listitem">
+        <span class="g-line"><strong>Cycling Computers / GPS Mounts</strong> are an accessory that serve as an electronic tracking device on a bicycle.</span>
+        <span class="g-line">Made from durable lightweight materials such as hard plastics or aluminum, usually mounted directly to the bicycle handlebars or stem.</span>
+        <span class="g-line">To track speed, distance travel, navigation and riding metrics suited for training, travel, long rides, and trail exploration.</span>
+        <span class="g-line"><strong>Prefer Bikes:</strong> Road Bikes, Gravel Bikes, Mountain Bikes, and Hybrid Bikes</span>
+      </span>
+      <span class="g-item" role="listitem">
+        <span class="g-line"><strong>Upgraded Pedals (Flat, Clipless, or Hybrid)</strong> enhancing driving performance by improving the grip, and foot stability depending on riding style making the pedals more efficient.</span>
+        <span class="g-line">Made from durable materials such as forged aluminum, magnesium, carbon fiber composites, or reinforced nylon bodies with chromoly steel axles.</span>
+        <span class="g-line">Attach directly into the ends of the bicycle's crank arms (right and left sides).</span>
+        <span class="g-line"><strong>Preferred / Compatible Bikes:</strong> Road Bikes, Mountain Bikes, Gravel Bikes, and Hybrid Bikes.</span>
+      </span>
+      <span class="g-item" role="listitem">
+        <span class="g-line"><strong>Suspension Seatpost or Upgraded Forks</strong> serve as mechanical shock-absorption components designed to smooth out rough rides.</span>
+        <span class="g-line">Typically constructed from high aluminum alloy, carbon fiber, steel springs or fluid/air dampers.</span>
+        <span class="g-line">Suspension Seatpost replaces the standard bicycle seatpost and attach directly to the frames seat tube holding the saddle.</span>
+        <span class="g-line">Upgraded Forks replace the front fork, attaching the front wheel assembly to the bike’s head tube.</span>
+        <span class="g-line"><strong>Preferred Bike:</strong> Mountain Bikes, Gravel Bikes, and Hybrid Bike</span>
+      </span>
+      <span class="g-item" role="listitem">
+        <span class="g-line"><strong>Water Bottle Cages</strong> is an accessory holder designed to keep hydration readily accessible during riding.</span>
+        <span class="g-line">It is usually made from aluminum, plastic, steel or carbon fiber.</span>
+        <span class="g-line">It mounts directly to the threaded eyelets on the bicycle frame commonly in the down tube, seat tube or underneath the down tube.</span>
+        <span class="g-line"><strong>Preferred Bike:</strong> All Bike types.</span>
+      </span>
+      <span class="g-item" role="listitem">
+        <span class="g-line"><strong>Smartphone mounts</strong> it is a holder designed to keep phone visible and accessible while riding.</span>
+        <span class="g-line">Made from durable plastics, silicone grips or aluminum.</span>
+        <span class="g-line">It typically attaches to the bicycle handlebar or stem.</span>
+
+        <span class="g-line"><strong>Typically preferred and used for</strong> Commuter/City Bike, Hybrid Bike, Road Bike for (urban use)</span>
+      </span>
+      <span class="g-item" role="listitem">
+        <span class="g-line"><strong>Handlebar Tape / Bar Grips</strong> are outer coverings applied directly to bicycle handlebars to provide a secure and comfortable handhold.</span>
+        <span class="g-line"><strong>Bar Grips:</strong> Typically made from rubber, silicone, or foam compounds (common on flat handlebars).</span>
+        <span class="g-line"><strong>Handlebar Tape:</strong> Usually made from cork, synthetic leather, polyurethane (PU), EVA foam, or microfibre (common on drop handlebars).</span>
+        <span class="g-line">It wraps around or slides onto bicycle handlebars (grips slide onto the ends of flat bars, while tape is wrapped tightly along drop bars).</span>
+        <span class="g-line"><strong>Preferred / Compatible Bikes:</strong> All Bike Types (bar grips are common on mountain, hybrid, and commuter bikes; handlebar tape is standard on road, gravel, and touring drop-bar bikes).</span>
+      </span>
+      <span class="g-item" role="listitem">
+        <span class="g-line"><strong>Kickstands</strong> a mechanical supporting device attached to a bicycle to keep it upright when parked.</span>
+        <span class="g-line">It typically made from metals such as aluminum, steel or carbon steel composites.</span>
+        <span class="g-line">Mount directly to the bike frame, either behind the bottom bracket (center-mount kickstands) or near the rear left dropout (rear-mount/chainstay kickstands).</span>
+        <span class="g-line"><strong>Preferred Bikes:</strong> Commuter/City Bike, Hybrid Bike, Road Bike (urban use)</span>
+      </span>
+    </span>
+
+    <span class="g-sub">Maintenance &amp; Repair</span>
+    <span class="g-list" role="list">
+      <span class="g-item" role="listitem">
+        <span class="g-line"><strong>Minipumps and flat tire repair kits</strong> are portable emergency toolkits used to fix punctured tires and inflate while out on a ride.</span>
+        <span class="g-line">Repair kits contains vulcanizing rubber patches, metal or plastic scuffers/rasps, rubber cement, or pre-glued patch units, along with compact tire levers.</span>
+        <span class="g-line"><strong>Preferred Bikes:</strong> All bikes</span>
+      </span>
+      <span class="g-item" role="listitem">
+        <span class="g-line"><strong>Maintenance tools</strong> (such as multi-tools, chain breakers, tyre levers, and pocket wrenches) are portable hardware instruments used for routine adjustments, minor repairs, and component tuning while out on a ride or at home.</span>
+        <span class="g-line">Made from hardened chrome-vanadium steel, stainless steel, or durable aluminum bodies with integrated tool bits.</span>
+        <span class="g-line">They are attached or carried directly inside a saddlebag or any containers available in a modified bike.</span>
+        <span class="g-line"><strong>Preferred Bike:</strong> All bikes</span>
+      </span>
+    </span>
+
+
+    <span class="g-sub">Security &amp; Protection</span>
+    <span class="g-list" role="list">
+      <span class="g-item" role="listitem">
+        <span class="g-line"><strong>Fenders (Mudguards)</strong> is a protective curved pieces made in plastic, aluminum, or steel that attach over the front and rear wheels mounted to the bicycle frame.</span>
+        <span class="g-line">It is used to block waters, mud and road debris.</span>
+        <span class="g-line">Built in standard for commuter bikes and also commonly added to road, gravel and hybrid bikes for all weather riding.</span>
+      </span>
+      <span class="g-item" role="listitem">
+        <span class="g-line"><strong>Mud Flaps</strong> is an extensions made from rubber, leather, or soft plastic bolted or zipped that attach to the bottom of the fenders.</span>
+        <span class="g-line">It is used to extend fender coverage to block extra spray and protect our feet, the drivetrain and trailing rides.</span>
+        <span class="g-line"><strong>Same Preference as Fenders</strong></span>
+      </span>
+      <span class="g-item" role="listitem">
+        <span class="g-line"><strong>Bike Lock (U Lock and Cable Locks)</strong> it is a security device used to safeguard the bike against theft when left unattended.</span>
+        <span class="g-line">Made from hardened carbon steel, or silicone protective coatings.</span>
+        <span class="g-line">Carried in a backpack or mounted directly to the bike frame using a specialized mounting bracket, or wrapped around the seatpost.</span>
+        <span class="g-line"><strong>Preferred Bikes:</strong> Commuter/City Bike, Hybrid Bike, Road Bike (urban use)</span>
+      </span>
+      <span class="g-item" role="listitem">
+        <span class="g-line"><strong>Bicycle Covers</strong> are protective enclosures designed to shield a stored bicycle from environmental elements.</span>
+        <span class="g-line">Made from durable, waterproof, UV-resistant, and tear-proof synthetic fabrics like heavy-duty polyester, nylon, or Oxford cloth.</span>
+        <span class="g-line">It often used to be draped completely over the parked or stored bicycle, often featuring an elastic hem, drawstrings, or buckled straps at the bottom to secure it tightly around the wheels and frame against wind.</span>
+        <span class="g-line"><strong>Preferred / Compatible Bikes:</strong> All Bike Types.</span>
+      </span>
+      <span class="g-item" role="listitem">
+        <span class="g-line"><strong>Chainstay Protectors</strong> are protective guards designed to shield the bicycle frame from damage caused by the chain.</span>
+        <span class="g-line">Typically constructed from durable, shock-absorbing materials such as neoprene, rubber, leather, silicone, or tough plastic wraps.</span>
+        <span class="g-line">They wrap around or strap directly onto the right-hand (drive-side) chainstay of the bicycle frame, right beneath the chain.</span>
+        <span class="g-line"><strong>Preferred / Compatible Bikes:</strong> Mountain Bikes, Gravel Bikes, and Road Bikes.</span>
+      </span>
+    </span>
+ <span class="g-sub g-major">Accessories by Category</span>
+
+     <span class="g-sub">Safety</span>
+    <span class="g-list" role="list">
+      <span class="g-item" role="listitem">LED Lights (Front and Rear)</span>
+      <span class="g-item" role="listitem">Bicycle Bells and Horns</span>
+      <span class="g-item" role="listitem">Safety &amp; Apparel</span>
+      <span class="g-item" role="listitem">Rearview Mirrors<span class="g-figure"><img src="Images/Accessories/SAFETY.png" alt="Safety accessories including lights, bell, helmet, and rearview mirror" loading="lazy"></span></span>
+    </span>
+
+    <span class="g-sub">Storage &amp; Carrying</span>
+    <span class="g-list" role="list">
+      <span class="g-item" role="listitem">Rear Racks</span>
+      <span class="g-item" role="listitem">Front Pannier Rack</span>
+      <span class="g-item" role="listitem">Cargo &amp; Family Transport</span>
+      <span class="g-item" role="listitem">Rear Packs and Pannier Bags</span>
+      <span class="g-item" role="listitem">Front Bike Basket</span>
+      <span class="g-item" role="listitem">Frame / Top Tube Bags<span class="g-figure"><img src="Images/Accessories/STORAGE & CARRYING.png" alt="Storage and carrying accessories including racks, baskets, and bags" loading="lazy"></span></span>
+    </span>
+
+    <span class="g-sub">Comfort &amp; Performance</span>
+    <span class="g-list" role="list">
+      <span class="g-item" role="listitem">Cycling Computers / GPS Mounts</span>
+      <span class="g-item" role="listitem">Upgraded Pedals</span>
+      <span class="g-item" role="listitem">Suspension Seatpost or Upgraded Forks</span>
+      <span class="g-item" role="listitem">Water Bottle Cages</span>
+      <span class="g-item" role="listitem">Smartphone mounts</span>
+      <span class="g-item" role="listitem">Handlebar Tape / Bar Grips</span>
+      <span class="g-item" role="listitem">Kickstands<span class="g-figure"><img src="Images/Accessories/COMFORT & PERFORMANCE.png" alt="Comfort and performance accessories for a bicycle" loading="lazy"></span></span>
+    </span>
+
+    <span class="g-sub">Maintenance &amp; Repair</span>
+    <span class="g-list" role="list">
+      <span class="g-item" role="listitem"><strong>Minipumps and flat tire repair kits</strong> contain vulcanizing rubber patches, metal or plastic scuffers/rasps, rubber cement, or pre-glued patch units, along with compact tire levers.</span>
+      <span class="g-item" role="listitem"><strong>Maintenance tools</strong> (such as multi-tools, chain breakers, tyre levers, and pocket wrenches)<span class="g-figure"><img src="Images/Accessories/MAINTENANCE & REPAIR.png" alt="Bicycle maintenance and repair tools" loading="lazy"></span></span>
+    </span>
+
+    <span class="g-sub">Security &amp; Protection</span>
+    <span class="g-list" role="list">
+      <span class="g-item" role="listitem">Fenders (Mudguards)</span>
+      <span class="g-item" role="listitem">Mud Flaps</span>
+      <span class="g-item" role="listitem">Bike Lock (U Lock and Cable Locks)</span>
+      <span class="g-item" role="listitem">Bicycle Covers</span>
+      <span class="g-item" role="listitem">Chainstay Protectors<span class="g-figure"><img src="Images/Accessories/SECURITY & PROTECTION.png" alt="Security and protection accessories including locks, fenders, and covers" loading="lazy"></span></span>
+    </span>
+  </p>
+
+ <h1 id="warranties">Warranties</h1>
+   <p>
+    <span class="g-para">This section covers the warranty that the buyers will be provided and the conditions as follows:</span>
+    <span class="g-sub">Statutory Warranty</span>
+    <span class="g-para">The statutory warranty is a standard support that the buyers will get for buying a bicycle. This includes free of charge repair, replacement, and refund for one year. This is to comply with Article 68 of the Consumer Act of the Philippines (R.A. 7394).</span>
+    <span class="g-para">To qualify, the following conditions must be met:</span>
+    <span class="g-list" role="list">
+      <span class="g-item" role="listitem">The defective bike or parts must undergo an inspection by the Technical Service.</span>
+      <span class="g-item" role="listitem">Any defects or broken parts must not be due to improper use of the bicycle, use for competitions, use of non-recommended accessories, or incorrect maintenance work by unauthorized personnel.</span>
+      <span class="g-item" role="listitem">If a warranty repair fails to restore the bicycle to its peak working condition, the buyer is entitled to a replacement part of equal quality or a full refund for the damaged item.</span>
+      <span class="g-item" role="listitem">The warranty period for repaired components or replaced items will be renewed from the date the service is completed.</span>
+      <span class="g-item" role="listitem">Any claim against this statutory warranty must be filed within one year from the date of purchase.</span>
+      <span class="g-item" role="listitem">All warranty claims must be processed by an authorised retailer.</span>
+    </span>
+  </p>
+
+
+  <h1 id="hazard-alerts">Hazard Alerts</h1>
+ <p>
+    <span class="g-para">Riding a bike requires balance, composure, and a focused mind. It is not just about maintaining the pace for each pedal or being comfortable when riding. Because there are things on the road that a rider should be accountable and consider such as road signs, traffic lights, consistent maintenance of parts, and road hazards. Therefore, proper care in bike handling is a must while also making sure that all rules and regulations on the road are followed. With that, the road hazards are the following:</span>
+    <span class="g-list" role="list">
+       <span class="g-item" role="listitem">A flat tire might be due to a puncture, bruise, or break.<span class="g-figure"><img src="Images/Hazard/bk2.jpg" alt="Cyclist riding through a water-filled pothole on a damaged road" loading="lazy"></span></span>
+      <span class="g-item" role="listitem">Nails, broken glass, and potholes.<span class="g-figure"><img src="Images/Hazard/bk1.webp" alt="Close-up of a bicycle tire with a small object embedded in the tread" loading="lazy"></span></span>
+       <span class="g-item" role="listitem">Animals on country roads can be dangerous and can cause serious crashes.<span class="g-figure"><img src="Images/Hazard/bk3.jpg" alt="Cyclist swerving as a cow runs onto a country road" loading="lazy"></span></span>
+      <span class="g-item" role="listitem">Vehicles emerging from junctions.<span class="g-figure"><img src="Images/Hazard/bk4.webp" alt="Bicycle lying in front of a car after a collision" loading="lazy"></span></span>
+      <span class="g-item" role="listitem">Car doors opening.<span class="g-figure"><img src="Images/Hazard/bk5.jpg" alt="Cyclist lying on the road beside a car with its door open" loading="lazy"></span></span>
+      <span class="g-item" role="listitem">Vehicles moving off or coming out of driveways.<span class="g-figure"><img src="Images/Hazard/bk6.webp" alt="Cyclist sitting on the ground beside a white van while the driver looks on" loading="lazy"></span></span>
+      <span class="g-item" role="listitem">Pedestrians.<span class="g-figure"><img src="Images/Hazard/bk7.jpg" alt="Illustration of a cyclist knocking over a pedestrian at a crosswalk" loading="lazy"></span></span>
+      <span class="g-item" role="listitem">Cyclists and motorcyclists.<span class="g-figure"><img src="Images/Hazard/bk8.jpg" alt="Bicycle and motorcycle lying on the road after a crash" loading="lazy"></span></span>
+      <span class="g-item" role="listitem">Children running out from between parked cars or playing at the side of the road.<span class="g-figure"><img src="Images/Hazard/bk9.webp" alt="Paramedics attending to injured cyclists beside an ambulance" loading="lazy"></span></span>
+      <span class="g-item" role="listitem">Sharp bends.<span class="g-figure"><img src="Images/Hazard/bk10.webp" alt="Road with a sharp bend" loading="lazy"></span></span>
+       <span class="g-item" role="listitem">Blind junctions covered by overgrown trees.<span class="g-figure"><img src="Images/Hazard/bk11.jpg" alt="Narrow road with overgrown hedges hiding the view ahead" loading="lazy"></span></span>
+    </span>
+    <span class="g-para">And many others.</span>
+    <span class="g-para">While driving, look out for potential hazards. A hazard is any possible danger that might lead to a crash. It could be a pedestrian waiting to cross, a wet road, or something blocking your view of oncoming vehicles. Look out for approaching vehicles and parked vehicles pulling out.</span>
+  </p>
+
+  <h1 id="faqs">FAQ's</h1>
+  <p>
+    <span class="g-list" role="list">
+      <span class="g-item" role="listitem">
+        <span class="g-q">How important is a bike warranty? Can I still avail of service if I’ve lost the warranty document but still have the receipt?</span>
+        <span class="g-a">A bike warranty is important because it may cover manufacturing defects and certain faulty parts within a specific period. If you lose your warranty document, your receipt can serve as proof of purchase, so keep it in a safe place. You may still be eligible for warranty service, depending on the store’s policy, so contact them and provide your receipt and bike details.</span>
+      </span>
+      <span class="g-item" role="listitem">
+        <span class="g-q">What is a good bike for daily commuting to work? Is it low-maintenance?</span>
+        <span class="g-a">A hybrid bike or mountain bike is suitable for daily commuting in the Philippines, especially on roads with uneven surfaces. Hybrid bikes are generally lightweight and comfortable for paved roads, while mountain bikes offer better handling on rough roads. Both can be low-maintenance if cleaned regularly, properly lubricated, and checked for worn-out parts.</span>
+      </span>
+      <span class="g-item" role="listitem">
+        <span class="g-q">What are the different types of bikes, and how do their characteristics differ?</span>
+        <span class="g-a">Bicycles come in different types, each designed to specific purposes. Mountain bikes have wider, treaded tires and sturdy frames for rough roads, while road bikes are lightweight and designed for speed on paved surfaces. BMX bikes are smaller and built for tricks and stunts, while hybrid bikes combine features of road and mountain bikes for everyday use, and folding bikes are designed for convenient storage and transport.</span>
+      </span>
+      <span class="g-item" role="listitem">
+        <span class="g-q">What type of bike is suitable for children aged 6 to 11?</span>
+        <span class="g-a">The most suitable bike depends on the child's height, leg length, and riding ability rather than age alone. Smaller children may use bikes with 16-inch or 20-inch wheels, while taller children may be ready for 24-inch wheels. Choose a bike that allows the child to reach the handlebars comfortably, control the breaks, and place their feet securely when stopping.</span>
+      </span>
+      <span class="g-item" role="listitem">
+        <span class="g-q">In the event of a defect or damage to bike parts, how should I raise the concern—via email or a phone call?</span>
+        <span class="g-a">You can contact the seller or manufacturer through email, phone, or their official customer service channels. Email is useful for keeping a written record and attaching photos or videos of the defect, while a phone call can help you receive immediate instructions. Keep your receipt, warranty details, and purchase information ready when reporting the issue.</span>
+      </span>
+      <span class="g-item" role="listitem">
+        <span class="g-q">How can I tell when bike parts, such as tires or brakes, need replacing?</span>
+        <span class="g-a">Check your tires for deep cracks, worn-out tread, bulges, or frequent air loss, as these may indicate that they need replacing. Brakes should be inspected if they feel weak, make unusual noises, or fail to stop the bike properly. Have worn or damaged parts checked by a qualified bike mechanic to help prevent accidents.</span>
+      </span>
+      <span class="g-item" role="listitem">
+        <span class="g-q">What type of bike is budget-friendly and sustainable for students and working professionals?</span>
+        <span class="g-a">A basic mountain bike, hybrid bike, or single-speed bike can be a budget-friendly option for students and working professionals. Single-speed bikes have fewer moving parts, making them relatively simple and affordable to maintain, especially on flat roads. Choosing a durable frame, commonly available replacement parts, and a bike that suits your daily route can help reduce long-term expenses.</span>
+      </span>
+      <span class="g-item" role="listitem">
+        <span class="g-q">Which helmet brands are durable enough for daily cycling?</span>
+        <span class="g-a">Brands such as Giro, Bell, Specialized, and Decathlon offer bicycle helmets for different budgets and riding needs. When choosing a helmet, prioritize a proper fit, comfort, ventilation, and recognized safety certification rather than the brand alone. Inspect your helmet regularly and replace it after a significant impact, even if there are no visible cracks.</span>
+      </span>
+      <span class="g-item" role="listitem">
+        <span class="g-q">How often (in weeks or months) should the bike be cleaned to prevent rapid rusting and part deterioration?</span>
+        <span class="g-a">For regular use, clean your bike every two to four weeks, depending on how often and where you ride. If you cycle in the rain, through muddy areas, or on wet roads, rinse off dirt and dry the bike thoroughly as soon as possible to help prevent rust. Lubricate the chain when needed, and avoid using excessive water or spraying high-pressure water directly onto bearings and other sensitive parts.</span>
+      </span>
+      <span class="g-item" role="listitem">
+        <span class="g-q">What is the validity period (in months or years) of the warranty for bike repairs?</span>
+        <span class="g-a">The warranty period depends on the bike manufacturer, seller, and type of repair or replacement part. Some warranties cover manufacturing defects for a specified period, while repair services may have a separate, shorter warranty or no additional coverage. Always ask for the warranty terms in writing, including its duration, coverage, exclusions, and whether it applies to labor, replacement parts, or both.</span>
+      </span>
+    </span>
+  </p>
+
+<h1 id="definitions-of-terminology">Definitions of Terminology</h1>
+  <p>
+<span class="g-list" role="list">
+<span class="g-item" role="listitem"><strong>Accountable</strong> – Being responsible for one’s actions or decisions.</span>
+<span class="g-item" role="listitem"><strong>Audible</strong> – Able to be heard or detected by the ears.</span>
+<span class="g-item" role="listitem"><strong>Authorised Retailer</strong> – A seller or dealer officially approved by the manufacturer to sell, service, or handle warranty claims for the product.</span>
+<span class="g-item" role="listitem"><strong>Axle-to-crown</strong> – The length of a fork from the wheel axle to the fork crown; it must not exceed the frame maker's limit.</span>
+<span class="g-item" role="listitem"><strong>Bottom bracket</strong> – The bearing set in the frame shell that lets the crank turn.</span>
+<span class="g-item" role="listitem"><strong>Bottom-Bracket Shell</strong> – The part of the frame that houses and supports the bottom-bracket assembly and crank rotation.</span>
+<span class="g-item" role="listitem"><strong>Bruise</strong> – Damage to a tire caused by a strong impact or collision, which can weaken the tire.</span>
+<span class="g-item" role="listitem"><strong>Caliper</strong> – A braking component that applies force to brake pads, which then create friction against a rim or disc rotor.</span>
+<span class="g-item" role="listitem"><strong>Cassette</strong> – A group of rear sprockets mounted on the rear wheel hub that provides different gear ratios.</span>
+<span class="g-item" role="listitem"><strong>Chainring</strong> – The toothed ring on the crank that drives the chain.</span>
+<span class="g-item" role="listitem"><strong>Chainstay</strong> – The part of a bicycle frame that runs from the bottom-bracket area toward the rear wheel axle.</span>
+<span class="g-item" role="listitem"><strong>Chainstays</strong> – Frame tubes that extend from the bottom-bracket area to the rear wheel axle and help transfer loads.</span>
+<span class="g-item" role="listitem"><strong>Chromoly Steel</strong> – A strong and lightweight type of steel commonly used for bicycle components and frames.</span>
+<span class="g-item" role="listitem"><strong>Composure</strong> – The ability to stay calm and controlled, especially in a difficult or dangerous situation.</span>
+<span class="g-item" role="listitem"><strong>Components</strong> – Individual parts that make up a bicycle or another product.</span>
+<span class="g-item" role="listitem"><strong>Convex</strong> – Having a surface that curves outward, allowing a wider field of view.</span>
+<span class="g-item" role="listitem"><strong>Crankset</strong> – The two crank arms and the chainring(s).</span>
+<span class="g-item" role="listitem"><strong>Cross-chaining</strong> – Running the chain on the largest ring and largest sprocket (or smallest and smallest).</span>
+<span class="g-item" role="listitem"><strong>Defective</strong> – Having a fault, damage, or problem that prevents a product from working properly.</span>
+<span class="g-item" role="listitem"><strong>Derailleur</strong> – A bicycle mechanism that moves the chain between different sprockets to change gears.</span>
+<span class="g-item" role="listitem"><strong>Derailleur hanger</strong> – The small replaceable tab on the frame that holds the rear derailleur.</span>
+<span class="g-item" role="listitem"><strong>Drivetrain</strong> – The bicycle components that transfer power from the rider’s pedaling to the rear wheel.</span>
+<span class="g-item" role="listitem"><strong>Dropout</strong> – The slot in the frame or fork where a wheel axle sits.</span>
+<span class="g-item" role="listitem"><strong>Dropper seatpost</strong> – A telescopic seatpost that lowers and raises the saddle from the handlebar.</span>
+<span class="g-item" role="listitem"><strong>ETRTO</strong> – The size marking printed on tires and tubes (for example 40-622); use it to buy matching replacements.</span>
+<span class="g-item" role="listitem"><strong>Fenders</strong> – Protective covers positioned over bicycle wheels to help block mud, water, and road debris.</span>
+<span class="g-item" role="listitem"><strong>Head Tube</strong> – The front section of the bicycle frame that holds the steering components and connects the frame to the fork.</span>
+<span class="g-item" role="listitem"><strong>Headset</strong> – A set of bearings and related components that allows the fork, handlebar, and steering system to rotate smoothly.</span>
+<span class="g-item" role="listitem"><strong>High-denier Nylon</strong> – A strong, durable nylon fabric commonly used for bags and other outdoor equipment.</span>
+<span class="g-item" role="listitem"><strong>Hitch Mechanism</strong> – A device used to securely connect a trailer, cart, or other attachment to a bicycle.</span>
+<span class="g-item" role="listitem"><strong>Improper Use</strong> – Using a product incorrectly or in a way that is not intended or recommended by the manufacturer.</span>
+<span class="g-item" role="listitem"><strong>Indexing</strong> – Adjusting shifter and cable so each click moves the chain exactly one sprocket.</span>
+<span class="g-item" role="listitem"><strong>Junction</strong> – A place where two or more roads meet or cross.</span>
+<span class="g-item" role="listitem"><strong>Laminated Polyester</strong> – Polyester fabric covered with an additional protective layer to improve its resistance to water and wear.</span>
+<span class="g-item" role="listitem"><strong>Limit screws (H/L)</strong> – Screws that stop the derailleur from moving past the first or last sprocket.</span>
+<span class="g-item" role="listitem"><strong>Overgrown</strong> – Describes plants, trees, or vegetation that have grown excessively and may block visibility or pathways.</span>
+<span class="g-item" role="listitem"><strong>Pannier</strong> – A bag or container attached to the side of a bicycle rack for carrying items.</span>
+<span class="g-item" role="listitem"><strong>Pneumatic</strong> – Operated or supported by air pressure, such as bicycle or cart wheels filled with air.</span>
+<span class="g-item" role="listitem"><strong>Potential Hazard</strong> – A possible source of danger that could cause an accident or injury.</span>
+<span class="g-item" role="listitem"><strong>Preload</strong> – The initial amount of pressure or tension applied to a component, such as headset bearings, to remove unwanted looseness.</span>
+<span class="g-item" role="listitem"><strong>Puncture</strong> – A hole or damage in a tire caused by a sharp object.</span>
+<span class="g-item" role="listitem"><strong>Quick link</strong> – A removable chain link used to open and close the chain.</span>
+<span class="g-item" role="listitem"><strong>Rasps</strong> – Rough, abrasive tools used to remove or roughen material.</span>
+<span class="g-item" role="listitem"><strong>Rigid Structural Frame</strong> – A strong bicycle frame designed to maintain its shape without built-in suspension movement.</span>
+<span class="g-item" role="listitem"><strong>Rotor</strong> – The disc on the wheel hub that the disc-brake pads squeeze.</span>
+<span class="g-item" role="listitem"><strong>Sag</strong> – How far a suspension fork compresses under the rider's weight at rest.</span>
+<span class="g-item" role="listitem"><strong>Scuffers</strong> – Rough tools used to scrape or roughen a surface, particularly when preparing a tire for a repair patch.</span>
+<span class="g-item" role="listitem"><strong>Seatstays</strong> – Frame tubes that extend toward the rear axle and provide structural support for the rear part of the bicycle frame.</span>
+<span class="g-item" role="listitem"><strong>Shatter-resistant</strong> – Designed to resist breaking or scattering into pieces when struck or damaged.</span>
+<span class="g-item" role="listitem"><strong>Situational Awareness</strong> – The ability to understand what is happening around you and recognize possible dangers.</span>
+<span class="g-item" role="listitem"><strong>Standover height</strong> – Height of the top tube; the clearance when you stand over the bike.</span>
+<span class="g-item" role="listitem"><strong>Statutory Warranty</strong> – A warranty required by law that provides buyers with certain protections for defective products.</span>
+<span class="g-item" role="listitem"><strong>Steerer</strong> – The upper part of the bicycle fork that passes through the head tube and connects the fork to the steering assembly.</span>
+<span class="g-item" role="listitem"><strong>Thru-axle</strong> – A threaded axle that passes through the fork and hub to hold the wheel.</span>
+<span class="g-item" role="listitem"><strong>TPI</strong> – Threads per inch; describes the thread pitch.</span>
+<span class="g-item" role="listitem"><strong>Torque</strong> – A twisting force applied when tightening or turning a fastener, usually measured to ensure that bicycle components are secured correctly. Also, the turning force on a bolt, measured in newton-metres (Nm).</span>
+<span class="g-item" role="listitem"><strong>Toe overlap</strong> – The foot touching the front wheel when steering at low speed; a larger tire or longer crank can cause it.</span>
+<span class="g-item" role="listitem"><strong>Tubeless</strong> – A tire system that operates without a separate inner tube, using an airtight seal between the tire and rim. Also, a tire and rim system that seals air without an inner tube.</span>
+<span class="g-item" role="listitem"><strong>Vulcanizing</strong> – A process of treating rubber to make it stronger, more durable, and more resistant to heat and wear.</span>
+</span>
+</p>
+
+
+<h1 id="reference">Reference</h1>
+  <p>
+    <span class="g-para g-ref">BikeMN. (2021, May 26). Safety equipment. Bicycle Alliance of Minnesota. <a href="https://www.bikemn.org/mn-bicycling-handbook/safety-equipment/" target="_blank" rel="noopener">https://www.bikemn.org/mn-bicycling-handbook/safety-equipment/</a></span>
+    <span class="g-para g-ref">Cayabyab, M. J. (2020). MMDA: Employees return to work on bikes. The Philippine Star.</span>
+    <span class="g-para g-ref">Cruz, N. (2020). Two-wheeled transport. Manila Standard.</span>
+    <span class="g-para g-ref">Delgrossi, L. (2012). Vehicle safety communications: Protocols, security, and privacy. John Wiley &amp; Sons. <a href="https://ils.pup.edu.ph/cgi-bin/koha/opac-detail.pl?biblionumber=55004" target="_blank" rel="noopener">https://ils.pup.edu.ph/cgi-bin/koha/opac-detail.pl?biblionumber=55004</a></span>
+    <span class="g-para g-ref">Denton, T. (2012). Advanced automotive fault diagnosis: Automotive technology: Vehicle maintenance and repair. Routledge.</span>
+    <span class="g-para g-ref">Gutierrez, D. (2022). Amid high fuel prices, JV Ejercito renews call for safer bike lanes. Philippine Daily Inquirer.</span>
+    <span class="g-para g-ref">Lowe’s transport manager’s and operator’s handbook 2023. (n.d.). Google Books. <a href="https://books.google.com.ph/books?id=i8CpEAAAQBAJ&amp;pg=PA1&amp;source=gbs_toc_r&amp;cad=2#v=onepage&amp;q&amp;f=false" target="_blank" rel="noopener">https://books.google.com.ph/books?id=i8CpEAAAQBAJ&amp;pg=PA1&amp;source=gbs_toc_r&amp;cad=2#v=onepage&amp;q&amp;f=false</a></span>
+    <span class="g-para g-ref">Recreational Equipment, Inc. (n.d.). Bike trailer buying guide. <a href="https://www.rei.com/learn/expert-advice/bike-trailers.html" target="_blank" rel="noopener">https://www.rei.com/learn/expert-advice/bike-trailers.html</a></span>
+    <span class="g-para g-ref">BH Bikes. (2023). Spike user manual. <a href="https://www.bhbikes.com/download/bancorecursos/manuales/ENG/2023/2023_SPIKE_ENG_USER_MANUAL.pdf" target="_blank" rel="noopener">https://www.bhbikes.com/download/bancorecursos/manuales/ENG/2023/2023_SPIKE_ENG_USER_MANUAL.pdf</a></span>
+  </p>
+
+    <footer class="guide-footer" aria-hidden="true">
+     
+    </footer>
+ <footer class="site-footer">
+    <span>All Rights Reserved &copy; 2026</span>
+  </footer>
+
+  <img id="scrollWheel" src="Images/animation_wheel.png" alt="" aria-hidden="true">
+
+  <script>
+  (function () {
+    const wheel = document.getElementById('scrollWheel');
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      wheel.remove();
+      return;
+    }
+    const HOLD = 80;
+    const CROSS = 50;
+    const DIRT = ['#8b6b4a', '#a0805a', '#6f5239', '#b89572', '#7d5f42'];
+    let frames = [];
+    let lastX = null, lastY = null, lastT = 0, speed = 0;
+    let lastUx = 0, lastUy = 1, stopTimer;
+
+    document.documentElement.style.overflowX = 'hidden';
+
+    function puff(x, y, ux, uy, big) {
+      const d = document.createElement('div');
+      const s = (big ? 8 : 4) + Math.random() * (big ? 10 : 5);
+      d.style.cssText =
+        'position:absolute;left:0;top:0;border-radius:50%;pointer-events:none;z-index:40;' +
+        'width:' + s + 'px;height:' + s + 'px;background:' + DIRT[Math.floor(Math.random() * DIRT.length)] + ';';
+      document.body.appendChild(d);
+
+      const drift = (20 + Math.random() * 40) * (big ? 1.6 : 1);
+      const maxX = document.documentElement.clientWidth - s * 3;
+const ex = Math.max(0, Math.min(maxX, x + ux * drift + (Math.random() - 0.5) * 36));
+x = Math.max(0, Math.min(maxX, x));
+      const ey = y + uy * drift + (Math.random() - 0.5) * 36 - 8;
+      const grow = 1.6 + Math.random() * 1.4;
+
+      const anim = d.animate([
+        { transform: 'translate(' + x + 'px,' + y + 'px) scale(1)', opacity: 0.85 },
+        { transform: 'translate(' + ex + 'px,' + ey + 'px) scale(' + grow + ')', opacity: 0 }
+      ], { duration: 600 + Math.random() * 500, easing: 'ease-out' });
+      anim.onfinish = function () { d.remove(); };
+    }
+
+    function dust(x, y, ux, uy, size, count, big) {
+      for (let n = 0; n < count; n++) {
+        puff(x + ux * size * 0.4, y + uy * size * 0.4 + size * 0.3, ux, uy, big);
+      }
+    }
+
+    function measure() {
+      const w = window.innerWidth < 600 ? 32 : 90;
+      wheel.style.width = w + 'px';
+      wheel.style.height = w + 'px';
+      const size = wheel.offsetWidth || 90;
+       const vw = document.documentElement.clientWidth - (window.innerWidth < 600 ? 36 : 0);
+      const sy = window.scrollY;
+
+      const sections = [];
+      document.querySelectorAll('h1').forEach(h => {
+        const p = h.nextElementSibling;
+        if (p && p.tagName === 'P') sections.push({ h, p });
+      });
+      if (!sections.length) return;
+
+      const box = sections[0].h.getBoundingClientRect();
+      const xLeft = Math.max(size / 2, box.left - size / 2 - 6);
+      const xRight = Math.min(vw - size / 2, box.right + size / 2 + 6);
+
+      const ys = [box.top + sy - 16];
+      sections.forEach(s => ys.push(s.p.getBoundingClientRect().bottom + sy + 16));
+
+      let minGap = Infinity;
+      for (let i = 1; i < ys.length; i++) minGap = Math.min(minGap, ys[i] - ys[i - 1]);
+      const k = Math.min(1, (minGap * 0.4) / (HOLD + CROSS));
+      const hold = HOLD * k;
+      const cross = CROSS * k;
+
+      frames = [];
+      let cum = 0;
+      function add(ref, x, y, dir) {
+        const prev = frames[frames.length - 1];
+        if (prev) cum += (x - prev.x) + (y - prev.y) * dir;
+        frames.push({ ref, x, y, cum });
+      }
+
+      add(0, xLeft, ys[0], -1);
+      add(ys[0] + hold, xLeft, ys[0], -1);
+
+      for (let i = 1; i < ys.length; i++) {
+        const fromX = (i % 2 === 1) ? xLeft : xRight;
+        const toX = (i % 2 === 1) ? xRight : xLeft;
+        const dir = (i % 2 === 1) ? -1 : 1;
+        const newDir = -dir;
+        add(ys[i] - cross - hold, fromX, ys[i], dir);
+        add(ys[i] - cross, fromX, ys[i], dir);
+        add(ys[i] + cross, toX, ys[i], newDir);
+        add(ys[i] + cross + hold, toX, ys[i], newDir);
+      }
+
+      const last = frames[frames.length - 1];
+      add(last.ref + 100000, last.x, last.y, 1);
+      lastX = null;
+      update();
+    }
+
+     const MAX_SPEED = 2;
+    let targetS = 0;
+    let curS = 0;
+    let started = false;
+    let rafId = null;
+    let lastFrameT = 0;
+
+    function prepareLengths() {
+      if (frames[0].L !== undefined) return;
+      frames[0].L = 0;
+      for (let n = 1; n < frames.length; n++) {
+        frames[n].L = frames[n - 1].L + Math.hypot(
+          frames[n].x - frames[n - 1].x,
+          frames[n].y - frames[n - 1].y
+        );
+      }
+    }
+
+    function compute() {
+      prepareLengths();
+      const ref = window.scrollY + window.innerHeight * 0.5;
+
+      let i = 0;
+      while (i < frames.length - 2 && ref > frames[i + 1].ref) i++;
+      const a = frames[i], b = frames[i + 1];
+
+      let t = b.ref === a.ref ? 1 : (ref - a.ref) / (b.ref - a.ref);
+      t = Math.min(1, Math.max(0, t));
+
+      targetS = a.L + (b.L - a.L) * t;
+    }
+
+    function pointAt(s) {
+      let j = 0;
+      while (j < frames.length - 2 && s > frames[j + 1].L) j++;
+      const a = frames[j], b = frames[j + 1];
+
+      let t = b.L === a.L ? 0 : (s - a.L) / (b.L - a.L);
+      t = Math.min(1, Math.max(0, t));
+
+      return {
+        x: a.x + (b.x - a.x) * t,
+        y: a.y + (b.y - a.y) * t,
+        travel: a.cum + (b.cum - a.cum) * t
+      };
+    }
+
+    function draw() {
+      const size = wheel.offsetWidth || 90;
+      const p = pointAt(curS);
+      const x = p.x;
+      const y = p.y;
+      const rotation = (p.travel / (Math.PI * size)) * 360;
+
+      wheel.style.transform =
+        `translate(${x - size / 2}px, ${y - size / 2}px) rotate(${rotation}deg)`;
+
+      const now = performance.now();
+      if (lastX !== null) {
+        const dx = x - lastX;
+        const dy = y - lastY;
+        const dist = Math.hypot(dx, dy);
+        const dt = Math.max(1, now - lastT);
+        const v = dist / dt;
+
+        if (dist > 0.5 && dist < 300) {
+          const ux = -dx / dist;
+          const uy = -dy / dist;
+          lastUx = ux;
+          lastUy = uy;
+          const slowing = v < speed * 0.9;
+          const count = slowing ? 3 : (Math.random() < 0.5 ? 1 : 0);
+          dust(x, y, ux, uy, size, count, slowing);
+          speed = speed * 0.6 + v * 0.4;
+        }
+      }
+      lastX = x;
+      lastY = y;
+      lastT = now;
+
+      clearTimeout(stopTimer);
+      stopTimer = setTimeout(function () {
+        if (speed > 0.12 && lastX !== null) {
+          dust(lastX, lastY, lastUx, lastUy, size, 9, true);
+        }
+        speed = 0;
+        lastX = null;
+      }, 120);
+    }
+
+    function tick(now) {
+      const dt = Math.min(64, now - lastFrameT || 16);
+      lastFrameT = now;
+
+      let step = (targetS - curS) * (1 - Math.exp(-dt / 90));
+      const maxStep = MAX_SPEED * dt;
+      step = Math.max(-maxStep, Math.min(maxStep, step));
+      curS += step;
+
+      const settled = Math.abs(targetS - curS) < 0.3;
+      if (settled) curS = targetS;
+
+      draw();
+
+      if (settled) {
+        rafId = null;
+      } else {
+        rafId = requestAnimationFrame(tick);
+      }
+    }
+
+    function update() {
+      if (frames.length < 2) return;
+      compute();
+
+      if (!started) {
+        curS = targetS;
+        started = true;
+        draw();
+        return;
+      }
+
+      if (!rafId) {
+        lastFrameT = performance.now();
+        rafId = requestAnimationFrame(tick);
+      }
+    }
+
+    window.addEventListener('scroll', update, { passive: true });
+     let lastWidth = window.innerWidth;
+    window.addEventListener('resize', function () {
+      if (window.innerWidth === lastWidth) return;
+      lastWidth = window.innerWidth;
+      measure();
+    });
+    window.addEventListener('load', measure);
+    if (document.fonts) document.fonts.ready.then(measure);
+    measure();
+  })();
+  </script>
+
+ <script>
+  (function () {
+    const bar = document.getElementById('roadProgress');
+    let lastY = window.scrollY;
+
+    function checkDirection() {
+      const y = window.scrollY;
+      if (Math.abs(y - lastY) < 3) return;
+      bar.classList.toggle('going-up', y < lastY);
+      lastY = y;
+    }
+
+    window.addEventListener('scroll', checkDirection, { passive: true });
+   if (!(window.CSS && CSS.supports && CSS.supports('animation-timeline: scroll()'))) {
+      const fill = bar.querySelector('.road-fill');
+      const bike = bar.querySelector('.road-bike');
+      bar.style.display = 'block';
+
+      const paintRoad = function () {
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        const f = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+        const travel = bar.clientHeight - 34;
+        fill.style.height = (17 + f * travel) + 'px';
+        bike.style.top = (f * travel) + 'px';
+      };
+
+      window.addEventListener('scroll', paintRoad, { passive: true });
+      window.addEventListener('resize', paintRoad);
+      window.addEventListener('load', paintRoad);
+      paintRoad();
+    }
+  })();
+  </script>
+
+<script>
+  (function () {
+    const links = document.querySelectorAll('.section-nav a');
+    const headings = document.querySelectorAll('body > h1[id]');
+
+     document.querySelectorAll('body > p').forEach(function (p) {
+      const row = document.createElement('div');
+      row.className = 'back-links';
+
+      const home = document.createElement('a');
+      home.href = 'index.html';
+      home.className = 'back-top back-home';
+      home.textContent = '← Back to home';
+
+      const a = document.createElement('a');
+      a.href = '#';
+      a.className = 'back-top';
+      a.textContent = '↑ Back to top';
+      a.addEventListener('click', function (e) {
+        e.preventDefault();
+        window.scrollTo({
+          top: 0,
+          behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
+        });
+      });
+
+      row.appendChild(home);
+      row.appendChild(a);
+      p.appendChild(row);
+    });
+
+     function setActive() {
+      const line = Math.max(window.innerHeight * 0.4, 120);
+      let current = null;
+
+      headings.forEach(function (h) {
+        if (h.getBoundingClientRect().top <= line) current = h;
+      });
+
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) {
+        current = headings[headings.length - 1];
+      }
+
+      let changed = false;
+      links.forEach(function (link) {
+        const on = !!current && link.getAttribute('href') === '#' + current.id;
+        if (on !== link.classList.contains('active')) changed = true;
+        link.classList.toggle('active', on);
+      });
+
+      if (changed && current) {
+        const nav = document.querySelector('.section-nav');
+        const active = nav.querySelector('a.active');
+        if (active) nav.scrollTo({ left: active.offsetLeft - nav.clientWidth / 2 + active.offsetWidth / 2 });
+      }
+    }
+
+    let ticking = false;
+    window.addEventListener('scroll', function () {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(function () {
+        setActive();
+        ticking = false;
+      });
+    }, { passive: true });
+
+    window.addEventListener('resize', setActive);
+    setActive();
+const navBar = document.querySelector('.section-nav');
+    const grid = document.querySelector('.card-grid');
+
+    new IntersectionObserver(function (entries) {
+      const entry = entries[0];
+      navBar.classList.toggle('visible', !entry.isIntersecting && entry.boundingClientRect.top < 0);
+    }, { rootMargin: '-70px 0px 0px 0px' }).observe(grid);
+    window.dispatchEvent(new Event('resize'));
+  })();
+  </script>
+
+<script>
+  (function () {
+    const bar = document.getElementById('roadProgress');
+    let dragging = false;
+
+    function scrollToPointer(e) {
+      const h = window.innerHeight;
+      const fraction = Math.min(1, Math.max(0, (e.clientY - 17) / (h - 34)));
+      const maxScroll = document.documentElement.scrollHeight - h;
+      window.scrollTo({ top: fraction * maxScroll, behavior: 'instant' });
+    }
+
+    function stopDrag() {
+      dragging = false;
+      bar.classList.remove('dragging');
+    }
+
+    bar.addEventListener('pointerdown', function (e) {
+      dragging = true;
+      bar.setPointerCapture(e.pointerId);
+      bar.classList.add('dragging');
+      e.preventDefault();
+      scrollToPointer(e);
+    });
+
+    bar.addEventListener('pointermove', function (e) {
+      if (dragging) scrollToPointer(e);
+    });
+
+    bar.addEventListener('pointerup', stopDrag);
+    bar.addEventListener('pointercancel', stopDrag);
+  })();
+  </script>
+
+</body>
+</html>
