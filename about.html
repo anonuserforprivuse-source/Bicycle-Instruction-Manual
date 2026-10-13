@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Meet the members of the Bicycle Instruction Manual team.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <title>About us</title>
+</head>
+<body class="bg-scene">
+
+  <video class="bg-video" autoplay muted loop playsinline disablepictureinpicture preload="auto" poster="Images/background-poster.jpg" aria-hidden="true" tabindex="-1">
+    <source src="Images/background.mp4" type="video/mp4">
+  </video>
+ <script>
+    (function () {
+      var v = document.querySelector('.bg-video');
+      if (!v) return;
+      var c = navigator.connection || {};
+      var slow = c.saveData || /2g/.test(c.effectiveType || '');
+      var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (slow || still) v.remove();
+    })();
+  </script>
+  <header class="site-header">
+    <a href="index.html" class="logo-link">
+      <img class="logo-png" src="Images/Logo.png" alt="Home">
+    </a>
+    <nav class="nav-links">
+      <a href="guide.html" class="nav-btn">Guide</a>
+    </nav>
+  </header>
+
+  <main>
+    <h1 class="members-title">Members:</h1>
+
+        <section class="members" aria-label="Group members">
+
+      <div class="member">
+        <div class="member-photo"><img src="Images/personal-pics/ereno.jpg" alt="Photo of Marky Cielo Ereño" width="110" height="110" decoding="async"></div>
+        <div class="member-info">
+          <span class="member-name">EREÑO, Marky Cielo</span>
+          <a class="member-link" href="mailto:markycieloereno526@gmail.com">markycieloereno526@gmail.com</a>
+        </div>
+      </div>
+
+      <div class="member">
+        <div class="member-photo"><img src="Images/personal-pics/joaquin.jpg" alt="Photo of Kent Adrian Joaquin" width="110" height="110" decoding="async"></div>
+        <div class="member-info">
+          <span class="member-name">JOAQUIN, Kent Adrian</span>
+          <a class="member-link" href="mailto:kentjoaquin4@gmail.com">kentjoaquin4@gmail.com</a>
+        </div>
+      </div>
+
+      <div class="member">
+        <div class="member-photo"><img src="Images/personal-pics/luching.jpg" alt="Photo of Justine Carl Luching" width="110" height="110" decoding="async"></div>
+        <div class="member-info">
+          <span class="member-name">LUCHING, Justine Carl</span>
+          <a class="member-link" href="mailto:luchingcarljustine@gmail.com">luchingcarljustine@gmail.com</a>
+        </div>
+      </div>
+
+      <div class="member">
+        <div class="member-photo"><img src="Images/personal-pics/munoz.jpg" alt="Photo of Christus Joseph Muñoz" width="110" height="110" decoding="async"></div>
+        <div class="member-info">
+          <span class="member-name">MUÑOZ, Christus Joseph</span>
+          <a class="member-link" href="mailto:christusjosephmunoz@gmail.com">christusjosephmunoz@gmail.com</a>
+        </div>
+
+      </div>
+
+      <div class="member">
+        <div class="member-photo"><img src="Images/personal-pics/ursal.jpg" alt="Photo of Daniel Ursal" width="110" height="110" decoding="async"></div>
+        <div class="member-info">
+          <span class="member-name">URSAL, Daniel</span>
+          <a class="member-link" href="mailto:danielursal.21@gmail.com">danielursal.21@gmail.com</a>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+</body>
+</html>
